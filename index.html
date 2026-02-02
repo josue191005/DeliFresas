@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="D'Eli Fresa: Postres personalizados, Crepés, Helados y Pancakes. ¡Arma tu vaso a tu gusto!">
+    <meta name="theme-color" content="#ff4d80">
+    
+    <title>D'Eli Fresa | Postres con Amor</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="icon" href="https://wsrv.nl/?url=https://drive.google.com/uc?id=18WCH3kGofMDPsSGD7BDPIUvc0xyaeyVs">
+    
+    <style>
+        /* --- 1. VARIABLES E IDENTIDAD --- */
+        :root {
+            --primary-color: #ff4d80; /* Rosa Fresa */
+            --primary-dark: #e63e6d;
+            --secondary-color: #ff9eb5; /* Rosa Pastel */
+            --accent-color: #8bc34a; /* Verde Hoja */
+            --bg-color: #fff5f8;
+            --card-bg: #ffffff;
+            --text-main: #5d4037; /* Marrón Chocolate */
+            --text-light: #8d6e63;
+            --font-title: 'Pacifico', cursive;
+            --font-body: 'Quicksand', sans-serif;
+            --shadow: 0 8px 25px rgba(255, 77, 128, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        button { font-family: var(--font-body); }
+
+        /* --- 2. COMPONENTES UI --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 25px; 
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 128, 0.4);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+        @media(max-width: 400px) { .section-title { font-size: 1.8rem; white-space: normal; } }
+
+        /* --- 3. HEADER --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
+        }
+
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { font-weight: 600; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        .hamburger { display: none; font-size: 1.5rem; color: var(--primary-color); cursor: pointer; }
+
+        /* --- 4. HERO SECTION --- */
+        #hero {
+            min-height: 85vh; 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://wsrv.nl/?url=https://drive.google.com/uc?id=1KI3kCreXK6o-_ad26ySig4XUt1vVlAHS');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+            color: white; 
+        }
+
+        @media(min-width: 1024px) { #hero { background-attachment: fixed; } }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+            z-index: 1;
+            animation: fadeIn Up 1s ease-out;
+        }
+
+        .hero-badge {
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 77, 128, 0.6);
+        }
+
+        #hero h1 {
+            font-family: var(--font-title);
+            font-size: 3.5rem; 
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5); 
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            font-weight: 600;
+        }
+
+        /* --- 5. SISTEMA DE GALERÍAS (BUILDER) --- */
+        #catalogo { padding: 60px 0; min-height: 600px; }
+
+        .step-container { display: none; opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease; }
+        .step-container.active { display: block; opacity: 1; transform: translateY(0); }
+        .step-container.fade-out { opacity: 0; transform: translateY(-20px); }
+
+        .step-header { text-align: center; margin-bottom: 30px; }
+        .step-header h2 { font-size: 2rem; color: var(--primary-color); margin-bottom: 5px; }
+        .step-header p { color: #888; }
+
+        .option-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            position: relative;
+        }
+        .option-card:hover { transform: translateY(-5px); border-color: var(--secondary-color); }
+        .option-card.selected { border-color: var(--primary-color); background-color: #fff0f5; }
+        .option-card.selected::after {
+            content: '\f00c'; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            position: absolute; top: 10px; right: 10px;
+            background: var(--primary-color); color: white;
+            width: 25px; height: 25px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 0.8rem;
+        }
+
+        .option-details { padding: 15px; text-align: center; }
+        .option-name { display: block; font-weight: 700; color: var(--text-main); margin-bottom: 5px; }
+        .option-price { color: var(--primary-color); font-weight: 800; font-size: 1.1rem; }
+
+        .grid-standard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+        .grid-standard .option-img { height: 120px; width: 100%; object-fit: cover; }
+
+        /* DISEÑO DE VASOS (GRID 4 COLUMNAS EN PC) */
+        #grid-cups {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 20px;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        #grid-cups .option-img {
+            height: 280px; 
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        @media(max-width: 768px) {
+            #grid-cups {
+                display: flex; 
+                overflow-x: auto;
+                scroll-snap-type: x mandatory; 
+                padding: 10px 20px 30px; 
+                gap: 20px;
+                grid-template-columns: none; 
+                justify-content: flex-start;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; 
+            }
+            #grid-cups::-webkit-scrollbar { display: none; }
+
+            #grid-cups .option-card {
+                min-width: 200px; 
+                width: 200px;
+                scroll-snap-align: center;
+                flex-shrink: 0;
+            }
+            #grid-cups .option-img { height: 240px; }
+        }
+
+        /* GRID TOPPINGS */
+        .grid-toppings { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-toppings .option-card { display: flex; align-items: center; flex-direction: column; }
+        .grid-toppings .option-img { height: 90px; width: 100%; object-fit: cover; }
+        
+        /* MEJORA VISUAL TOPPINGS EN PC */
+        @media(min-width: 600px) { 
+            .grid-toppings { grid-template-columns: repeat(4, 1fr); }
+            /* Se agrandó la imagen en PC como pediste */
+            .grid-toppings .option-img { height: 140px; } 
+        }
+
+        .controls {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px dashed #eee;
+            padding-top: 20px;
+        }
+
+        /* --- 6. SECCIONES ESTÁTICAS (HORIZONTAL) --- */
+        .static-section { padding: 50px 0; border-bottom: 1px solid #eee; }
+        .static-section:nth-child(even) { background-color: white; }
+
+        .static-grid {
+            display: flex; 
+            gap: 25px;
+            overflow-x: auto; 
+            padding: 20px 10px; 
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .static-grid::-webkit-scrollbar { display: none; }
+
+        .static-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            min-width: 260px; 
+            width: 260px;
+            scroll-snap-align: center;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media(min-width: 1024px) {
+            .static-grid {
+                justify-content: center; 
+                flex-wrap: wrap; 
+                overflow: visible; 
+            }
+        }
+
+        .static-card:hover { transform: translateY(-5px); }
+        
+        .placeholder-img {
+            width: 100%; height: 180px; background-color: #eee;
+            display: flex; align-items: center; justify-content: center;
+            color: #ccc; font-weight: bold; font-size: 1.2rem;
+        }
+        .static-info { padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .static-info h3 { font-size: 1.2rem; margin-bottom: 5px; color: var(--text-main); }
+        .static-info p { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
+
+        /* --- 7. EVENTOS, NOSOTROS, UBICACION --- */
+        #eventos { background: linear-gradient(135deg, #fff0f5 0%, #fff 100%); padding: 60px 0; }
+        .pricing-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 30px; }
+        .price-card { background: white; padding: 30px; border-radius: 20px; box-shadow: var(--shadow); width: 300px; text-align: center; border: 1px solid #eee; }
+        .price-card.featured { transform: scale(1.05); border: 2px solid var(--primary-color); position: relative; }
+        .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary-color); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+        .price-val { font-size: 2.5rem; font-weight: 800; color: var(--primary-color); margin: 10px 0; }
+
+        #nosotros { padding: 80px 0; background: white; border-top: 10px solid var(--bg-color); }
+        .about-wrapper { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-text h3 { font-size: 1.8rem; color: var(--text-main); margin-bottom: 20px; }
+        .about-text p { margin-bottom: 15px; font-size: 1.05rem; color: #666; }
+        .about-image { flex: 1; min-width: 300px; display: flex; justify-content: center; }
+        .about-image img { width: 350px; height: 350px; object-fit: cover; border-radius: 30px; box-shadow: 20px 20px 0px var(--secondary-color); border: 5px solid white; }
+
+        #ubicacion { padding: 60px 0; background: white; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+        .map-box { height: 300px; background: #eee; border-radius: 20px; overflow: hidden; }
+
+        footer { background: var(--text-main); color: white; padding: 40px 0 100px; text-align: center; }
+
+        /* --- 8. STICKY CART BAR & MODAL --- */
+        .sticky-cart-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: white; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); z-index: 2000; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; }
+        .cart-summary { display: flex; flex-direction: column; }
+        .cart-summary span { font-size: 0.8rem; color: #666; }
+        .cart-summary strong { font-size: 1.2rem; color: var(--primary-color); }
+        .cart-btn-action { background: #25d366; color: white; padding: 10px 20px; border-radius: 30px; font-weight: bold; display: flex; align-items: center; gap: 8px; border: none; cursor: pointer; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
+
+        .cart-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2500; display: none; justify-content: center; align-items: flex-end; }
+        .cart-modal.open { display: flex; }
+        .cart-content { background: white; width: 100%; max-width: 500px; border-radius: 20px 20px 0 0; padding: 25px; max-height: 80vh; overflow-y: auto; position: relative; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+        @media(min-width: 768px) {
+            .cart-modal { align-items: center; }
+            .cart-content { border-radius: 20px; }
+            .grid-toppings .option-card { flex-direction: row; text-align: left; }
+            /* Ajuste de imagen topping en PC dentro de la tarjeta */
+            .grid-toppings .option-img { width: 100px; height: 100px; } 
+            .info-grid { grid-template-columns: 1fr 1fr; }
+            .nav-links { display: flex; }
+            .hamburger { display: none; }
+            #hero h1 { font-size: 4.5rem; } 
+        }
+
+        @media(max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 20px; box-shadow: 0 10px 10px rgba(0,0,0,0.05); }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .info-grid { grid-template-columns: 1fr; }
+            .about-image img { width: 100%; height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=18WCH3kGofMDPsSGD7BDPIUvc0xyaeyVs" alt="Logo">
+                D'Eli Fresa
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#catalogo" onclick="resetBuilder()">Fresas</a></li>
+                <li><a href="#crepes">Crepés</a></li>
+                <li><a href="#helados">Helados</a></li>
+                <li><a href="#pankekes">Pankekes</a></li>
+                <li><a href="#eventos">Eventos</a></li>
+                <li><a href="#nosotros">Nosotros</a></li> 
+            </ul>
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <span class="hero-badge">100% Frescura & Amor</span>
+            <h1>Postres con <br><span style="color:var(--secondary-color);">Amor</span></h1>
+            <p>¡Arma tu vaso favorito paso a paso con la fruta más fresca!</p>
+            <a href="#catalogo" class="btn btn-primary" onclick="resetBuilder()">
+                ¡Empezar! <i class="fa-solid fa-spoon"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="catalogo" class="container">
+        
+        <div id="step-0" class="step-container active">
+            <div class="step-header">
+                <h2>1. Elige tu Tamaño</h2>
+                <p>Selecciona un vaso para comenzar</p>
+            </div>
+            <div id="grid-cups"></div>
+        </div>
+
+        <div id="step-1" class="step-container">
+            <div class="step-header">
+                <h2>2. Baño Líquido</h2>
+                <p>Elige tu salsa favorita</p>
+            </div>
+            <div class="grid-standard" id="grid-liquids"></div>
+            <div class="controls">
+                <button class="btn btn-outline" onclick="changeStep(0)">Atrás</button>
+            </div>
+        </div>
+
+        <div id="step-2" class="step-container">
+            <div class="step-header">
+                <h2>3. Elige tu Crema</h2>
+                <p>La base dulce perfecta</p>
+            </div>
+            <div class="grid-standard" id="grid-creams"></div>
+            <div class="controls">
+                <button class="btn btn-outline" onclick="changeStep(1)">Atrás</button>
+            </div>
+        </div>
+
+        <div id="step-3" class="step-container">
+            <div class="step-header">
+                <h2>4. Agrega Toppings</h2>
+                <p id="toppings-info-text">Selecciona tus toppings</p>
+            </div>
+            <div class="grid-toppings" id="grid-toppings"></div>
+            <div class="controls">
+                <button class="btn btn-outline" onclick="changeStep(2)">Atrás</button>
+                <button class="btn btn-primary" onclick="changeStep(4)">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="crepes" class="static-section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Crepés</h2>
+            <div class="static-grid">
+                <div class="static-card">
+                    <div class="placeholder-img">FOTO</div>
+                    <div class="static-info">
+                        <h3>Crepé Clásico</h3>
+                        <p>Manjar, fresa y plátano.</p>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCart('Crepé Clásico', 15)">Agregar S/ 15.00</button>
+                    </div>
+                </div>
+                <div class="static-card">
+                    <div class="placeholder-img">FOTO</div>
+                    <div class="static-info">
+                        <h3>Crepé Full</h3>
+                        <p>Nutella, frutas y helado.</p>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCart('Crepé Full', 20)">Agregar S/ 20.00</button>
+                    </div>
+                </div>
+                <div class="static-card">
+                    <div class="placeholder-img">FOTO</div>
+                    <div class="static-info">
+                        <h3>Crepé Salado</h3>
+                        <p>Queso, jamón y orégano.</p>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCart('Crepé Salado', 18)">Agregar S/ 18.00</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="helados" class="static-section" style="background-color: #fff5f8;">
+        <div class="container">
+            <h2 class="section-title">Helados Artesanales</h2>
+            <div class="static-grid">
+                <div class="static-card">
+                    <div class="placeholder-img">FOTO</div>
+                    <div class="static-info">
+                        <h3>Copa Simple</h3>
+                        <p>1 Bola a elección.</p>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCart('Copa Simple', 8)">Agregar S/ 8.00</button>
+                    </div>
+                </div>
+                <div class="static-card">
+                    <div class="placeholder-img">FOTO</div>
+                    <div class="static-info">
+                        <h3>Copa D'Eli</h3>
+                        <p>2 Bolas + Fudge y Galleta.</p>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCart('Copa D\'Eli', 14)">Agregar S/ 14.00</button>
+                    </div>
+                </div>
+                <div class="static-card">
+                    <div class="placeholder-img">FOTO</div>
+                    <div class="static-info">
+                        <h3>Milkshake</h3>
+                        <p>Batido cremoso de fresa.</p>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCart('Milkshake', 12)">Agregar S/ 12.00</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pankekes" class="static-section">
+        <div class="container">
+            <h2 class="section-title">Pankekes</h2>
+            <div class="static-grid">
+                <div class="static-card">
+                    <div class="placeholder-img">FOTO</div>
+                    <div class="static-info">
+                        <h3>Torre Miel</h3>
+                        <p>3 Discos con miel de maple.</p>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCart('Torre Miel', 12)">Agregar S/ 12.00</button>
+                    </div>
+                </div>
+                <div class="static-card">
+                    <div class="placeholder-img">FOTO</div>
+                    <div class="static-info">
+                        <h3>Choco-Lovers</h3>
+                        <p>Masa de chocolate y fudge.</p>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCart('Choco-Lovers', 15)">Agregar S/ 15.00</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="eventos">
+        <div class="container">
+            <h2 class="section-title" style="text-shadow: none;">Eventos Especiales</h2>
+            <div class="pricing-wrap">
+                <div class="price-card">
+                    <h3>Pack Básico</h3>
+                    <p style="color: #666;">20 Personas</p>
+                    <div class="price-val">S/ 100</div>
+                    <ul style="text-align: left; margin-top: 15px; font-size: 0.9rem;">
+                        <li><i class="fa-solid fa-check" style="color:var(--accent-color)"></i> Vasos personales</li>
+                        <li><i class="fa-solid fa-check" style="color:var(--accent-color)"></i> Toppings Clásicos</li>
+                    </ul>
+                </div>
+                <div class="price-card featured">
+                    <div class="badge">MÁS PEDIDO</div>
+                    <h3>Pack Fiesta</h3>
+                    <p style="color: #666;">40 Personas</p>
+                    <div class="price-val">S/ 180</div>
+                    <ul style="text-align: left; margin-top: 15px; font-size: 0.9rem;">
+                        <li><i class="fa-solid fa-check" style="color:var(--accent-color)"></i> Estación Completa</li>
+                        <li><i class="fa-solid fa-check" style="color:var(--accent-color)"></i> Atención Personalizada</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="https://wa.me/51920080186?text=Hola,%20me%20interesa%20un%20evento" target="_blank" class="btn btn-primary">
+                    Cotizar Evento
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros">
+        <div class="container">
+            <h2 class="section-title">Sobre Nosotros</h2>
+            <div class="about-wrapper">
+                <div class="about-text">
+                    <h3>Pasión por la fresura</h3>
+                    <p>Bienvenido a <strong>D'Eli Fresa</strong>, un rincón donde el amor por los postres se encuentra con la frescura de las mejores frutas seleccionadas.</p>
+                    <div style="margin-top: 20px;">
+                        <span style="font-family: var(--font-title); font-size: 1.5rem; color: var(--primary-color);">Eli</span>
+                        <br>
+                        <small style="color: #999;">Fundadora</small>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1b6QMBkNL6kZdktoMnSzGIbXBVJHBouab" alt="Dueña de D'Eli Fresa">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ubicacion">
+        <div class="container">
+            <h2 class="section-title">Visítanos</h2>
+            <div class="info-grid">
+                <div>
+                    <h3><i class="fa-solid fa-shop"></i> D'Eli Fresa</h3>
+                    <p>Ven y disfruta de los mejores postres de la zona.</p>
+                    <br>
+                    <p><strong>Dirección:</strong> Avenida A Mz.B2 - Lt.8, Ancón 07076</p>
+                    <p><strong>Pedidos:</strong> 920 080 186</p>
+                </div>
+                <div class="map-box">
+                    <iframe src="https://maps.google.com/maps?q=Lima,Peru&z=14&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 D'Eli Fresa. Todos los derechos reservados.</p>
+            <div style="margin-top: 10px; font-size: 1.5rem;">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram" style="margin: 0 15px;"></i>
+                <i class="fa-brands fa-tiktok"></i>
+            </div>
+        </div>
+    </footer>
+
+    <div class="sticky-cart-bar">
+        <div class="cart-summary">
+            <span id="items-count">0 items</span>
+            <strong id="total-price">S/ 0.00</strong>
+        </div>
+        <button class="cart-btn-action" onclick="openCartModal()">
+            Ver Pedido <i class="fa-solid fa-chevron-up"></i>
+        </button>
+    </div>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+                <h3>Tu Pedido</h3>
+                <i class="fa-solid fa-xmark" style="cursor:pointer; font-size:1.5rem;" onclick="closeCartModal()"></i>
+            </div>
+            
+            <div id="cart-items-container"></div>
+
+            <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 25px;">
+                <button class="btn btn-primary" style="width:100%; background: #25d366; border: none; padding: 15px;" onclick="checkoutWhatsApp()">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Enviar a WhatsApp
+                </button>
+                <button class="btn btn-outline" style="width:100%; padding: 12px;" onclick="closeCartModal()">
+                    <i class="fa-solid fa-plus"></i> Elegir otro producto
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* --- DATA --- */
+        // CAMBIO: INTERCAMBIO DE IMAGENES MEDIANO/EXTRA Y ACTUALIZACION
+        const cups = [
+            { id: 1, name: "Vaso Chico", price: 5.00, img: "" },
+            { id: 2, name: "Vaso Mediano", price: 8.00, img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1RQ1oi7QMCMdRgUwrK2HZAC-kEHiMs8zX" }, // URL SWAPPED
+            { id: 3, name: "Vaso Grande", price: 12.00, img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1W1sogVRuL4TS79GxlGLS4kCvpCpP814i" },
+            { id: 4, name: "Vaso Extragrande", price: 16.00, img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1mEp8bx6PS_DOP5VOqrnB4iAt1_wsERFv" } // URL SWAPPED
+        ];
+
+        const liquids = [
+            { name: "Mermelada", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1mpJuSgqYIUO2ygJRaXqfQjqfeN09l8Xp" },
+            { name: "Fudge", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1NwOIMfAXazsTyQobSNnBi9h6fhSWX6ov" },
+            { name: "Manjar Blanco", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1Sc4CU1IhL4hu1MdTMVCHcDSOUuRGzI1M" },
+            { name: "Leche Condensada", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1nA32j3yLY4FABNe5TGqXvePIj8SRUD0v" }
+        ];
+
+        const creams = [
+            { name: "Maracumango", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1K5K7NB_3YHagGdhJM7xIiyivCxoLBE8a" },
+            { name: "Choco-Oreo", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1j1TwBuExEft2-XRDNf0nU3Et_wmqUTRo" },
+            { name: "Vainilla", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1UXW22lg2h3NAcKdUlrlQtOSDSZUp2tAO" }
+        ];
+
+        const toppings = [
+            { name: "Gomitas", img: "https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=200" },
+            { name: "Palitos Choco", img: "https://images.unsplash.com/photo-1543253687-c596696e5056?w=200" },
+            { name: "Galletas", img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=200" },
+            { name: "Granola", img: "https://images.unsplash.com/photo-1517093720228-27471b74c521?w=200" },
+            { name: "ChinChin", img: "https://images.unsplash.com/photo-1581798434250-9279090c2928?w=200" }
+        ];
+
+        /* --- STATE --- */
+        let currentStep = 0;
+        let selection = { cup: null, liquid: null, cream: null, toppings: [] };
+        let cart = [];
+
+        /* --- INIT --- */
+        function init() {
+            // Render Cups
+            document.getElementById('grid-cups').innerHTML = cups.map(c => `
+                <div class="option-card" onclick="selectCup(${c.id})">
+                    ${c.id === 1 
+                        ? '<div style="height:300px; background:#f9f9f9; display:flex; align-items:center; justify-content:center; color:#ccc; font-weight:bold;">SIN FOTO</div>' 
+                        : `<img src="${c.img}" class="option-img">`
+                    }
+                    <div class="option-details">
+                        <span class="option-name">${c.name}</span>
+                        <span class="option-price">S/ ${c.price.toFixed(2)}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Liquids & Cremas
+            document.getElementById('grid-liquids').innerHTML = liquids.map(l => renderSimpleCard(l, 'selectLiquid')).join('');
+            document.getElementById('grid-creams').innerHTML = creams.map(c => renderSimpleCard(c, 'selectCream')).join('');
+            
+            // Render Toppings
+            document.getElementById('grid-toppings').innerHTML = toppings.map(t => `
+                <div class="option-card" onclick="toggleTopping(this, '${t.name}')" data-name="${t.name}">
+                    <img src="${t.img}" class="option-img">
+                    <div class="option-details"><span class="option-name">${t.name}</span></div>
+                </div>
+            `).join('');
+        }
+
+        function renderSimpleCard(item, fnName) {
+            return `
+                <div class="option-card" onclick="${fnName}('${item.name}')">
+                    <img src="${item.img}" class="option-img">
+                    <div class="option-details"><span class="option-name">${item.name}</span></div>
+                </div>
+            `;
+        }
+
+        /* --- NAVIGATION --- */
+        function changeStep(newStepIndex) {
+            if(newStepIndex === 4) { addToCart(); return; }
+            
+            const currentEl = document.getElementById(`step-${currentStep}`);
+            const nextEl = document.getElementById(`step-${newStepIndex}`);
+            
+            currentEl.classList.add('fade-out');
+            setTimeout(() => {
+                currentEl.classList.remove('active', 'fade-out');
+                nextEl.classList.add('active');
+                document.getElementById('catalogo').scrollIntoView({behavior: 'smooth'});
+                currentStep = newStepIndex;
+            }, 400);
+        }
+
+        function resetBuilder() {
+            selection = { cup: null, liquid: null, cream: null, toppings: [] };
+            document.querySelectorAll('.option-card').forEach(el => el.classList.remove('selected'));
+            changeStep(0);
+        }
+
+        /* --- SELECTION LOGIC --- */
+        function selectCup(id) {
+            selection.cup = cups.find(c => c.id === id);
+            
+            const limit = (selection.cup.id <= 2) ? 2 : 4;
+            document.getElementById('toppings-info-text').innerText = `Selecciona hasta ${limit} toppings`;
+            
+            changeStep(1);
+        }
+
+        function selectLiquid(name) { selection.liquid = name; changeStep(2); }
+        function selectCream(name) { selection.cream = name; changeStep(3); }
+
+        // CAMBIO: LÓGICA DE TOPPINGS FIFO (FIRST IN FIRST OUT) SIN ALERTA
+        function toggleTopping(el, name) {
+            if (!selection.cup) return; 
+            const limit = (selection.cup.id <= 2) ? 2 : 4;
+
+            if (selection.toppings.includes(name)) {
+                // Si ya está, lo quitamos
+                selection.toppings = selection.toppings.filter(t => t !== name);
+                el.classList.remove('selected');
+            } else {
+                // Si vamos a añadir
+                if (selection.toppings.length >= limit) {
+                    // Si llegamos al límite, quitamos el PRIMERO (el más antiguo)
+                    const removed = selection.toppings.shift();
+                    // Buscamos su elemento visual para desmarcarlo
+                    const removedEl = document.querySelector(`.grid-toppings .option-card[data-name="${removed}"]`);
+                    if(removedEl) removedEl.classList.remove('selected');
+                }
+                // Añadimos el nuevo
+                selection.toppings.push(name);
+                el.classList.add('selected');
+            }
+        }
+
+        /* --- CART LOGIC --- */
+        function addStaticToCart(name, price) {
+            cart.push({
+                name: name,
+                price: price,
+                details: null,
+                cartId: Date.now()
+            });
+            updateCartBar();
+            renderCartList();
+            openCartModal();
+        }
+
+        function addToCart() {
+            cart.push({
+                name: selection.cup.name,
+                price: selection.cup.price,
+                details: { ...selection }, 
+                cartId: Date.now()
+            });
+            updateCartBar();
+            resetBuilder(); 
+            renderCartList();
+            openCartModal();
+        }
+
+        function updateCartBar() {
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('items-count').innerText = `${cart.length} items`;
+            document.getElementById('total-price').innerText = `S/ ${total.toFixed(2)}`;
+        }
+
+        function renderCartList() {
+            const container = document.getElementById('cart-items-container');
+            if (cart.length === 0) {
+                container.innerHTML = "<p style='text-align:center; color:#999'>Tu carrito está vacío.</p>";
+                return;
+            }
+            container.innerHTML = cart.map(item => {
+                let desc = "";
+                if(item.details) {
+                    desc = `
+                        <div style="font-size:0.8rem; color:#666; margin-top:5px;">
+                            ${item.details.liquid} | ${item.details.cream} <br>
+                            Toppings: ${item.details.toppings.join(', ') || 'Ninguno'}
+                        </div>`;
+                } else {
+                    desc = `<div style="font-size:0.8rem; color:#999; margin-top:5px;">Producto de la carta</div>`;
+                }
+
+                return `
+                <div style="border-bottom:1px solid #eee; padding:10px 0; display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <strong>${item.name}</strong> <span style="color:var(--primary-color)">S/ ${item.price.toFixed(2)}</span>
+                        ${desc}
+                    </div>
+                    <i class="fa-solid fa-trash" style="color:red; cursor:pointer;" onclick="removeFromCart(${item.cartId})"></i>
+                </div>`;
+            }).join('');
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(x => x.cartId !== id);
+            updateCartBar();
+            renderCartList();
+        }
+
+        function openCartModal() { renderCartList(); document.getElementById('cartModal').classList.add('open'); }
+        function closeCartModal() { document.getElementById('cartModal').classList.remove('open'); }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return;
+            const phone = "51920080186";
+            let msg = "Hola Deli Fresa, mi pedido:\n\n";
+            let total = 0;
+            cart.forEach((item, i) => {
+                total += item.price;
+                msg += `${i+1}. ${item.name} (S/ ${item.price})`;
+                
+                if(item.details) {
+                    msg += `\n   - Salsa: ${item.details.liquid}\n   - Crema: ${item.details.cream}\n   - Toppings: ${item.details.toppings.join(', ') || 'Sin toppings'}\n\n`;
+                } else {
+                    msg += `\n\n`; 
+                }
+            });
+            msg += `Total: S/ ${total.toFixed(2)}`;
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+
+        init();
+    </script>
+</body>
+</html>

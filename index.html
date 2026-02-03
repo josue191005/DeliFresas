@@ -357,7 +357,7 @@
             box-shadow: 0 2px 8px rgba(255, 77, 128, 0.4);
         }
 
-        /* CAMBIO: AJUSTES PC (BOTON COMPACTO Y CHIPS GRANDES) */
+        /* CAMBIO PC: Botones más chicos y Chips más grandes */
         @media(min-width: 1024px) {
             .variant-block .btn-primary {
                 width: auto !important; /* Quita el width 100% */
@@ -435,13 +435,6 @@
         }
 
         /* --- 8. EVENTOS, NOSOTROS, UBICACION --- */
-        #eventos { background: linear-gradient(135deg, #fff0f5 0%, #fff 100%); padding: 60px 0; }
-        .pricing-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 30px; }
-        .price-card { background: white; padding: 30px; border-radius: 20px; box-shadow: var(--shadow); width: 300px; text-align: center; border: 1px solid #eee; }
-        .price-card.featured { transform: scale(1.05); border: 2px solid var(--primary-color); position: relative; }
-        .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary-color); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
-        .price-val { font-size: 2.5rem; font-weight: 800; color: var(--primary-color); margin: 10px 0; }
-
         #nosotros { padding: 80px 0; background: white; border-top: 10px solid var(--bg-color); }
         .about-wrapper { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
         .about-text { flex: 1; min-width: 300px; }
@@ -467,6 +460,13 @@
         .cart-modal.open { display: flex; }
         .cart-content { background: white; width: 100%; max-width: 500px; border-radius: 20px 20px 0 0; padding: 25px; max-height: 80vh; overflow-y: auto; position: relative; animation: slideUp 0.3s ease; }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+        /* CONFIG MODAL ESPECIFICO */
+        .config-modal-content {
+            background: white; width: 100%; max-width: 500px; border-radius: 20px; padding: 20px; position: relative; animation: slideUp 0.3s ease;
+        }
+        .config-section { margin-bottom: 20px; }
+        .config-title { font-weight: bold; margin-bottom: 10px; display: block; color: var(--text-main); }
 
         @media(min-width: 768px) {
             .cart-modal { align-items: center; }
@@ -659,7 +659,7 @@
                             <button class="chip-btn" onclick="selectStaticOption('block-jugo-leche', 'Mango', 10, this)">Mango</button>
                             <button class="chip-btn" onclick="selectStaticOption('block-jugo-leche', 'Plátano', 10, this)">Plátano</button>
                         </div>
-                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Jugo con Leche', 9, 'block-jugo-leche')">Agregar</button>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Jugo con Leche', 10, 'block-jugo-leche')">Agregar</button>
                     </div>
                 </div>
             </div>
@@ -716,13 +716,13 @@
                             <span class="variant-title">Crepa Clásica</span>
                             <span class="variant-price" id="price-block-crepa-clasica">Desde S/ 13.00</span>
                         </div>
-                        <p class="variant-desc">Masa tradicional con manjar o fudge:</p>
+                        <p class="variant-desc">Masa tradicional con manjar o fosh:</p>
                         <div class="chip-container">
-                            <button class="chip-btn" onclick="selectStaticOption('block-crepa-clasica', '1 Fruta', 13, this)">1 Fruta</button>
-                            <button class="chip-btn" onclick="selectStaticOption('block-crepa-clasica', '2 Frutas', 15, this)">2 Frutas</button>
-                            <button class="chip-btn" onclick="selectStaticOption('block-crepa-clasica', 'Full+Helado', 17, this)">Full+Helado</button>
+                            <button class="chip-btn" onclick="openConfigModal('Crepa Clásica', '1 Fruta', 13)">1 Fruta (S/13)</button>
+                            <button class="chip-btn" onclick="openConfigModal('Crepa Clásica', '2 Frutas', 15)">2 Frutas (S/15)</button>
+                            <button class="chip-btn" onclick="openConfigModal('Crepa Clásica', 'Full', 17)">Full+Helado (S/17)</button>
                         </div>
-                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Crepa Clásica', 13, 'block-crepa-clasica')">Agregar</button>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="openConfigModal('Crepa Clásica', '1 Fruta', 13)">Agregar</button>
                     </div>
                     <div class="variant-block" id="block-crepa-nutella">
                         <div class="variant-header">
@@ -731,11 +731,11 @@
                         </div>
                         <p class="variant-desc">Rellena de auténtica Nutella:</p>
                         <div class="chip-container">
-                            <button class="chip-btn" onclick="selectStaticOption('block-crepa-nutella', '1 Fruta', 15, this)">1 Fruta</button>
-                            <button class="chip-btn" onclick="selectStaticOption('block-crepa-nutella', '2 Frutas', 17, this)">2 Frutas</button>
-                            <button class="chip-btn" onclick="selectStaticOption('block-crepa-nutella', 'Full+Helado', 19, this)">Full+Helado</button>
+                            <button class="chip-btn" onclick="openConfigModal('Crepa Nutella', '1 Fruta', 15)">1 Fruta (S/15)</button>
+                            <button class="chip-btn" onclick="openConfigModal('Crepa Nutella', '2 Frutas', 17)">2 Frutas (S/17)</button>
+                            <button class="chip-btn" onclick="openConfigModal('Crepa Nutella', 'Full', 19)">Full+Helado (S/19)</button>
                         </div>
-                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Crepa Nutella', 15, 'block-crepa-nutella')">Agregar</button>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="openConfigModal('Crepa Nutella', '1 Fruta', 15)">Agregar</button>
                     </div>
                 </div>
             </div>
@@ -757,10 +757,10 @@
                         </div>
                         <p class="variant-desc">Crujiente por fuera, suave por dentro:</p>
                         <div class="chip-container">
-                            <button class="chip-btn" onclick="selectStaticOption('block-waffle-clasico', '1 Fruta', 15, this)">1 Fruta</button>
-                            <button class="chip-btn" onclick="selectStaticOption('block-waffle-clasico', 'Full+Helado', 18, this)">Full+Helado</button>
+                            <button class="chip-btn" onclick="openConfigModal('Waffle Clásico', '1 Fruta', 15)">1 Fruta (S/15)</button>
+                            <button class="chip-btn" onclick="openConfigModal('Waffle Clásico', 'Full', 18)">Full+Helado (S/18)</button>
                         </div>
-                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Waffle Clásico', 15, 'block-waffle-clasico')">Agregar</button>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="openConfigModal('Waffle Clásico', '1 Fruta', 15)">Agregar</button>
                     </div>
                     <div class="variant-block" id="block-waffle-nutella">
                         <div class="variant-header">
@@ -769,10 +769,10 @@
                         </div>
                         <p class="variant-desc">Con extra Nutella:</p>
                         <div class="chip-container">
-                            <button class="chip-btn" onclick="selectStaticOption('block-waffle-nutella', '1 Fruta', 17, this)">1 Fruta</button>
-                            <button class="chip-btn" onclick="selectStaticOption('block-waffle-nutella', 'Full+Helado', 20, this)">Full+Helado</button>
+                            <button class="chip-btn" onclick="openConfigModal('Waffle Nutella', '1 Fruta', 17)">1 Fruta (S/17)</button>
+                            <button class="chip-btn" onclick="openConfigModal('Waffle Nutella', 'Full', 20)">Full+Helado (S/20)</button>
                         </div>
-                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Waffle Nutella', 17, 'block-waffle-nutella')">Agregar</button>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="openConfigModal('Waffle Nutella', '1 Fruta', 17)">Agregar</button>
                     </div>
                 </div>
             </div>
@@ -812,6 +812,7 @@
                         <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Sundae', 4, 'card-sundae')">Agregar</button>
                     </div>
                 </div>
+                
                 <div class="static-card" id="card-artesanal-vaso">
                     <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1z_merkXgnHPlzsKLUQj3FLgAWvbQXyk0" class="static-img">
                     <div class="static-info">
@@ -854,7 +855,7 @@
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1b6QMBkNL6kZdktoMnSzGIbXBVJHBouab" alt="Dueña de D'Eli Fresa">
+                    <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1nmh3mIizSnlyjGyf6Eo_yPOmbrqYMktR" alt="Dueña de D'Eli Fresa">
                 </div>
             </div>
         </div>
@@ -919,8 +920,25 @@
         </div>
     </div>
 
+    <div class="cart-modal" id="configModal" style="z-index: 2600;">
+        <div class="config-modal-content">
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                <h3 id="config-modal-title">Configurar</h3>
+                <i class="fa-solid fa-xmark" style="cursor:pointer; font-size:1.5rem;" onclick="closeConfigModal()"></i>
+            </div>
+            <p id="config-modal-subtitle" style="font-size:0.9rem; color:#666; margin-bottom:20px;"></p>
+            
+            <div id="config-form-container">
+                </div>
+
+            <button class="btn btn-primary" style="width:100%; margin-top:20px;" onclick="finishConfigAndAdd()">
+                Agregar al Pedido
+            </button>
+        </div>
+    </div>
+
     <script>
-        /* --- CONFIGURACION DE VASOS Y LIMITES --- */
+        /* --- DATA --- */
         const cups = [
             { id: 1, name: "Vaso Chiky", price: 5.00, img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1o7jPt6IdCpRsUhNPXkEWctPCpxUAUdDr", limits: { cream: 2, fruit: 1, jelly: 1, topping: 2 } },
             { id: 2, name: "Vaso Pequeño", price: 8.00, img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1wyjq_f6h2hMG769ltZQztQYEk5M_Y3JY", limits: { cream: 2, fruit: 1, jelly: 2, topping: 2 } }, 
@@ -928,12 +946,11 @@
             { id: 4, name: "Vaso Grande", price: 16.00, img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1LwLJJv_mG-JPVg6ZcA3q8bEwoMDb-tCJ", limits: { cream: 3, fruit: 2, jelly: 3, topping: 4 } }
         ];
 
-        // DATOS DE OPCIONES FRESAS (Updated URLs)
         const liquids = [
             { name: "Fosh (Fudge)", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1NwOIMfAXazsTyQobSNnBi9h6fhSWX6ov" },
             { name: "Manjar Blanco", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1Sc4CU1IhL4hu1MdTMVCHcDSOUuRGzI1M" },
             { name: "Leche Condensada", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1nA32j3yLY4FABNe5TGqXvePIj8SRUD0v" },
-            { name: "Mermelada Fresa", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1mpJuSgqYIUO2ygJRaXqfQjqfeN09l8Xp" }
+            { name: "Jalea de Fresa", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1mpJuSgqYIUO2ygJRaXqfQjqfeN09l8Xp" }
         ];
 
         const creams = [
@@ -977,9 +994,10 @@
         let currentStep = 0;
         let selection = { cup: null, liquids: [], creams: [], fruits: [], toppings: [] };
         let cart = [];
-        let staticSelections = {}; // Almacena la selección temporal de cada tarjeta estática
+        let staticSelections = {}; 
+        let tempConfig = {}; // Para el modal de configuración avanzada
 
-       /* --- INIT --- */
+        /* --- INIT --- */
         function init() {
             // Render Cups
             document.getElementById('grid-cups').innerHTML = cups.map(c => `
@@ -1012,7 +1030,6 @@
             // Iniciar Carrusel de Clientes en Móvil
             startClientCarousel();
         }
-
         function renderGrid(elementId, items, category) {
             document.getElementById(elementId).innerHTML = items.map(item => `
                 <div class="option-card" onclick="toggleSelection('${category}', '${item.name}')" data-cat="${category}" data-name="${item.name}">
@@ -1050,18 +1067,15 @@
         /* --- LOGIC SELECTION BUILDER --- */
         function selectCup(id) {
             selection.cup = cups.find(c => c.id === id);
-            
             document.getElementById('jelly-info-text').innerText = `Elige hasta ${selection.cup.limits.jelly} jaleas`;
             document.getElementById('cream-info-text').innerText = `Elige hasta ${selection.cup.limits.cream} cremas`;
             document.getElementById('fruit-info-text').innerText = `Elige hasta ${selection.cup.limits.fruit} frutas`;
             document.getElementById('toppings-info-text').innerText = `Elige hasta ${selection.cup.limits.topping} toppings`;
-
             changeStep(1);
         }
 
         function toggleSelection(category, name) {
             if (!selection.cup) return;
-            
             let limitKey = '';
             if (category === 'liquids') limitKey = 'jelly';
             else if (category === 'creams') limitKey = 'cream';
@@ -1087,26 +1101,18 @@
             }
         }
 
-        /* --- STATIC CATALOG LOGIC (CHIPS) --- */
+        /* --- STATIC CATALOG LOGIC --- */
         function selectStaticOption(blockId, optionName, price, btnElement) {
-            // Guardar selección
             staticSelections[blockId] = { name: optionName, price: price };
-            
-            // Actualizar visualmente los botones dentro del bloque
             const container = document.getElementById(blockId).querySelector('.chip-container');
             const buttons = container.querySelectorAll('.chip-btn');
             buttons.forEach(btn => btn.classList.remove('selected'));
             btnElement.classList.add('selected');
-
-            // Actualizar precio visual si es necesario
             const priceTag = document.getElementById(`price-${blockId}`);
-            if(priceTag) {
-                priceTag.innerText = `S/ ${price.toFixed(2)}`;
-            }
+            if(priceTag) priceTag.innerText = `S/ ${price.toFixed(2)}`;
         }
 
         function addStaticToCartWithValidation(productName, defaultPrice, blockId) {
-            // Verificar si se seleccionó una opción
             if (!staticSelections[blockId]) {
                 const btn = document.querySelector(`#${blockId} .btn-primary`);
                 btn.classList.add('shake-btn');
@@ -1115,28 +1121,136 @@
                 alert("⚠️ Por favor, selecciona un sabor u opción antes de agregar.");
                 return;
             }
-
             const selected = staticSelections[blockId];
-            
             cart.push({
                 name: `${productName} - ${selected.name}`,
-                price: selected.price, // Usar precio seleccionado
+                price: selected.price,
                 details: null,
                 cartId: Date.now()
             });
-            
             updateCartBar();
             renderCartList();
             openCartModal();
         }
 
         function addSimpleStaticToCart(name, price) {
-            cart.push({
-                name: name,
+            cart.push({ name: name, price: price, details: null, cartId: Date.now() });
+            updateCartBar();
+            renderCartList();
+            openCartModal();
+        }
+
+        /* --- COMPLEX CONFIG MODAL (CREPES/WAFFLES) --- */
+        function openConfigModal(productName, variantName, price) {
+            tempConfig = {
+                productName: productName,
+                variant: variantName,
                 price: price,
-                details: null,
+                base: [],
+                fruits: [],
+                iceCream: [],
+                toppings: []
+            };
+
+            document.getElementById('config-modal-title').innerText = `${productName} - ${variantName}`;
+            document.getElementById('config-modal-subtitle').innerText = `Precio: S/ ${price.toFixed(2)}`;
+            
+            let html = '';
+
+            // 1. BASE (Siempre para Clásica, implícito en Nutella)
+            if(productName.includes("Clásic")) {
+                html += `
+                <div class="config-section">
+                    <span class="config-title">Elige Base (1):</span>
+                    <div class="chip-container">
+                        <button class="chip-btn" onclick="toggleConfig('base', 'Fosh', 1, this)">Fosh</button>
+                        <button class="chip-btn" onclick="toggleConfig('base', 'Manjar', 1, this)">Manjar</button>
+                    </div>
+                </div>`;
+            }
+
+            // 2. FRUTAS (Depende de variante)
+            let fruitLimit = variantName.includes("1 Fruta") ? 1 : 2;
+            html += `
+            <div class="config-section">
+                <span class="config-title">Elige Fruta(s) (${fruitLimit}):</span>
+                <div class="chip-container">
+                    ${fruits.map(f => `<button class="chip-btn" onclick="toggleConfig('fruits', '${f.name}', ${fruitLimit}, this)">${f.name}</button>`).join('')}
+                </div>
+            </div>`;
+
+            // 3. HELADO Y TOPPING (Solo si es FULL o Waffles avanzados)
+            if(variantName.includes("Full") || (productName.includes("Waffle") && variantName.includes("Full"))) {
+                html += `
+                <div class="config-section">
+                    <span class="config-title">Elige Helado/Crema (1):</span>
+                    <div class="chip-container">
+                        <button class="chip-btn" onclick="toggleConfig('iceCream', 'Vainilla', 1, this)">Vainilla</button>
+                        <button class="chip-btn" onclick="toggleConfig('iceCream', 'Chocolate', 1, this)">Chocolate</button>
+                        <button class="chip-btn" onclick="toggleConfig('iceCream', 'Mixto', 1, this)">Mixto</button>
+                    </div>
+                </div>`;
+            }
+
+            // 4. TOPPINGS (Si corresponde)
+            // Lógica: Waffles Full lleva 2, Crepas Full lleva 1, Clásicas llevan 1 (si es waffle) o 0
+            let toppingLimit = 0;
+            if(variantName.includes("Full") && productName.includes("Waffle")) toppingLimit = 2;
+            else if(variantName.includes("Full") || productName.includes("Waffle")) toppingLimit = 1;
+
+            if(toppingLimit > 0) {
+                html += `
+                <div class="config-section">
+                    <span class="config-title">Elige Topping(s) (${toppingLimit}):</span>
+                    <div class="chip-container">
+                        ${toppings.map(t => `<button class="chip-btn" onclick="toggleConfig('toppings', '${t.name}', ${toppingLimit}, this)">${t.name}</button>`).join('')}
+                    </div>
+                </div>`;
+            }
+
+            document.getElementById('config-form-container').innerHTML = html;
+            document.getElementById('configModal').classList.add('open');
+        }
+
+        function toggleConfig(type, value, limit, btn) {
+            const arr = tempConfig[type];
+            if(arr.includes(value)) {
+                arr.splice(arr.indexOf(value), 1);
+                btn.classList.remove('selected');
+            } else {
+                if(arr.length >= limit) {
+                    // FIFO logic visually
+                    const btns = btn.parentNode.querySelectorAll('.chip-btn');
+                    const firstVal = arr.shift();
+                    // Buscar el boton visual que tiene ese texto y quitar selected
+                    btns.forEach(b => { if(b.innerText === firstVal) b.classList.remove('selected'); });
+                }
+                arr.push(value);
+                btn.classList.add('selected');
+            }
+        }
+
+        function closeConfigModal() { document.getElementById('configModal').classList.remove('open'); }
+
+        function finishConfigAndAdd() {
+            // Validaciones básicas (opcional pero recomendado)
+            if(tempConfig.productName.includes("Clásic") && tempConfig.base.length === 0) { alert("Elige una base"); return; }
+            
+            // Construir descripcion
+            let detailsText = "";
+            if(tempConfig.base.length) detailsText += `Base: ${tempConfig.base.join(', ')} | `;
+            if(tempConfig.fruits.length) detailsText += `Fruta: ${tempConfig.fruits.join(', ')} | `;
+            if(tempConfig.iceCream.length) detailsText += `Helado: ${tempConfig.iceCream.join(', ')} | `;
+            if(tempConfig.toppings.length) detailsText += `Topping: ${tempConfig.toppings.join(', ')}`;
+
+            cart.push({
+                name: `${tempConfig.productName} (${tempConfig.variant})`,
+                price: tempConfig.price,
+                details: { isConfig: true, text: detailsText },
                 cartId: Date.now()
             });
+
+            closeConfigModal();
             updateCartBar();
             renderCartList();
             openCartModal();
@@ -1170,7 +1284,7 @@
             }
             container.innerHTML = cart.map(item => {
                 let desc = "";
-                if(item.details) {
+                if(item.details && !item.details.isConfig) {
                     desc = `
                         <div style="font-size:0.8rem; color:#666; margin-top:5px;">
                             Jaleas: ${item.details.liquids.join(', ') || '-'} <br>
@@ -1178,6 +1292,8 @@
                             Frutas: ${item.details.fruits.join(', ') || '-'} <br>
                             Toppings: ${item.details.toppings.join(', ') || 'Ninguno'}
                         </div>`;
+                } else if (item.details && item.details.isConfig) {
+                    desc = `<div style="font-size:0.8rem; color:#666; margin-top:5px;">${item.details.text}</div>`;
                 } else {
                     desc = `<div style="font-size:0.8rem; color:#999; margin-top:5px;">Opción seleccionada</div>`;
                 }
@@ -1211,11 +1327,13 @@
                 total += item.price;
                 msg += `${i+1}. *${item.name}* (S/ ${item.price})`;
                 
-                if(item.details) {
+                if(item.details && !item.details.isConfig) {
                     msg += `\n   - Jaleas: ${item.details.liquids.join(', ')}`;
                     msg += `\n   - Cremas: ${item.details.creams.join(', ')}`;
                     msg += `\n   - Frutas: ${item.details.fruits.join(', ')}`;
                     msg += `\n   - Toppings: ${item.details.toppings.join(', ')}\n\n`;
+                } else if (item.details && item.details.isConfig) {
+                    msg += `\n   - Detalle: ${item.details.text}\n\n`;
                 } else {
                     msg += `\n\n`; 
                 }
@@ -1226,21 +1344,15 @@
 
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
 
-        // Función para el carrusel automático en móvil
         function startClientCarousel() {
             const carousel = document.getElementById('clientsCarousel');
-            if (window.innerWidth > 768) return; // Solo en móvil
-
+            if (window.innerWidth > 768) return; 
             setInterval(() => {
                 const scrollAmount = carousel.offsetWidth;
                 const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-                
-                if (carousel.scrollLeft + scrollAmount >= maxScroll) {
-                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
-                } else {
-                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                }
-            }, 2500); // Cambia cada 2.5 segundos
+                if (carousel.scrollLeft + scrollAmount >= maxScroll) carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                else carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }, 2500); 
         }
 
         init();

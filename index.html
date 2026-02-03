@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="D'Eli Fresa: Postres personalizados, Crepés, Helados y Pancakes. ¡Arma tu vaso a tu gusto!">
+    <meta name="theme-color" content="#ff4d80">
+    
+    <title>D'Eli Fresa | Postres con Amor</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="icon" href="https://wsrv.nl/?url=https://drive.google.com/uc?id=18WCH3kGofMDPsSGD7BDPIUvc0xyaeyVs">
+    
+    <style>
+        /* --- 1. VARIABLES E IDENTIDAD --- */
+        :root {
+            --primary-color: #ff4d80; /* Rosa Fresa */
+            --primary-dark: #e63e6d;
+            --secondary-color: #ff9eb5; /* Rosa Pastel */
+            --accent-color: #8bc34a; /* Verde Hoja */
+            --bg-color: #fff5f8;
+            --card-bg: #ffffff;
+            --text-main: #5d4037; /* Marrón Chocolate */
+            --text-light: #8d6e63;
+            --font-title: 'Pacifico', cursive;
+            --font-body: 'Quicksand', sans-serif;
+            --shadow: 0 8px 25px rgba(255, 77, 128, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        button { font-family: var(--font-body); }
+
+        /* --- 2. COMPONENTES UI --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 25px; 
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 128, 0.4);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+        @media(max-width: 400px) { .section-title { font-size: 1.8rem; white-space: normal; } }
+
+        /* --- 3. HEADER --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
+        }
+
+        .nav-links { display: flex; gap: 15px; overflow-x: auto; white-space: nowrap; padding-bottom: 5px;}
+        .nav-links::-webkit-scrollbar { display: none; }
+        .nav-links a { font-weight: 600; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        .hamburger { display: none; font-size: 1.5rem; color: var(--primary-color); cursor: pointer; }
+
+        /* --- 4. HERO SECTION --- */
+        #hero {
+            min-height: 85vh; 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://wsrv.nl/?url=https://drive.google.com/uc?id=1KI3kCreXK6o-_ad26ySig4XUt1vVlAHS');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+            color: white; 
+        }
+
+        @media(min-width: 1024px) { #hero { background-attachment: fixed; } }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+            z-index: 1;
+            animation: fadeIn Up 1s ease-out;
+        }
+
+        .hero-badge {
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 77, 128, 0.6);
+        }
+
+        #hero h1 {
+            font-family: var(--font-title);
+            font-size: 3.5rem; 
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5); 
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            font-weight: 600;
+        }
+
+        /* --- 5. SISTEMA DE GALERÍAS (BUILDER) --- */
+        #catalogo { padding: 60px 0; min-height: 600px; }
+
+        .step-container { display: none; opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease; }
+        .step-container.active { display: block; opacity: 1; transform: translateY(0); }
+        .step-container.fade-out { opacity: 0; transform: translateY(-20px); }
+
+        .step-header { text-align: center; margin-bottom: 30px; }
+        .step-header h2 { font-size: 2rem; color: var(--primary-color); margin-bottom: 5px; }
+        .step-header p { color: #888; }
+
+        .option-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            position: relative;
+        }
+        .option-card:hover { transform: translateY(-5px); border-color: var(--secondary-color); }
+        .option-card.selected { border-color: var(--primary-color); background-color: #fff0f5; }
+        .option-card.selected::after {
+            content: '\f00c'; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            position: absolute; top: 10px; right: 10px;
+            background: var(--primary-color); color: white;
+            width: 25px; height: 25px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 0.8rem;
+        }
+
+        .option-details { padding: 15px; text-align: center; }
+        .option-name { display: block; font-weight: 700; color: var(--text-main); margin-bottom: 5px; }
+        .option-price { color: var(--primary-color); font-weight: 800; font-size: 1.1rem; }
+
+        .grid-standard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+        .grid-standard .option-img { height: 120px; width: 100%; object-fit: cover; }
+
+        /* DISEÑO DE VASOS (GRID 4 COLUMNAS EN PC) */
+        #grid-cups {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 20px;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        #grid-cups .option-img {
+            height: 280px; 
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        @media(max-width: 768px) {
+            #grid-cups {
+                display: flex; 
+                overflow-x: auto;
+                scroll-snap-type: x mandatory; 
+                padding: 10px 20px 30px; 
+                gap: 20px;
+                grid-template-columns: none; 
+                justify-content: flex-start;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; 
+            }
+            #grid-cups::-webkit-scrollbar { display: none; }
+
+            #grid-cups .option-card {
+                min-width: 200px; 
+                width: 200px;
+                scroll-snap-align: center;
+                flex-shrink: 0;
+            }
+            #grid-cups .option-img { height: 240px; }
+        }
+
+        /* GRID TOPPINGS */
+        .grid-toppings { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-toppings .option-card { display: flex; align-items: center; flex-direction: column; }
+        .grid-toppings .option-img { height: 90px; width: 100%; object-fit: cover; }
+        
+        @media(min-width: 600px) { 
+            .grid-toppings { grid-template-columns: repeat(4, 1fr); }
+            .grid-toppings .option-img { height: 140px; } 
+        }
+
+        .controls {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px dashed #eee;
+            padding-top: 20px;
+        }
+
+        /* --- 6. ESTILOS PARA SECCIONES DE UNA SOLA FOTO --- */
+        .static-section { padding: 50px 0; border-bottom: 1px solid #eee; }
+        .static-section:nth-child(even) { background-color: white; }
+
+        .single-product-layout {
+            display: flex;
+            gap: 30px;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            align-items: flex-start;
+        }
+
+        .main-product-img {
+            width: 40%;
+            flex-shrink: 0;
+        }
+        .main-product-img img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .product-options-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .variant-block {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .variant-block:last-child { border-bottom: none; padding-bottom: 0; }
+        .variant-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .variant-title { font-weight: 700; font-size: 1.2rem; color: var(--text-main); }
+        .variant-price { color: var(--primary-color); font-weight: 800; font-size: 1.1rem; }
+        .variant-desc { font-size: 0.85rem; color: #666; margin-bottom: 10px; }
+
+        /* Estilos para Chips */
+        .chip-container { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px; }
+        .chip-btn {
+            background: #f8f8f8; border: 1px solid #ddd; padding: 6px 12px;
+            border-radius: 15px; font-size: 0.75rem; cursor: pointer;
+            transition: all 0.2s; color: #555; font-weight: 600;
+        }
+        .chip-btn:hover { background: #e0e0e0; }
+        .chip-btn.selected {
+            background: var(--primary-color); color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 2px 8px rgba(255, 77, 128, 0.4);
+        }
+
+        /* CAMBIO: AJUSTES PC (BOTON COMPACTO Y CHIPS GRANDES) */
+        @media(min-width: 1024px) {
+            .variant-block .btn-primary {
+                width: auto !important; /* Quita el width 100% */
+                padding: 10px 40px;
+                display: inline-block;
+            }
+            .chip-btn {
+                font-size: 0.9rem; /* Chips más grandes */
+                padding: 8px 15px;
+            }
+            .static-info .btn-primary {
+                width: auto !important;
+                padding: 8px 30px;
+            }
+        }
+
+        /* Layout vertical en móvil */
+        @media (max-width: 768px) {
+            .single-product-layout {
+                flex-direction: column;
+                padding: 15px;
+            }
+            .main-product-img { width: 100%; }
+            .main-product-img img { height: 250px; }
+        }
+
+        /* Estilos para sección Helados (Mantiene grid cards) */
+        .static-grid-cards {
+            display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; padding: 20px 10px;
+        }
+        .static-card {
+            background: white; border-radius: 15px; overflow: hidden;
+            box-shadow: var(--shadow); transition: var(--transition);
+            width: 280px; display: flex; flex-direction: column; border: 1px solid #eee;
+        }
+        .static-card:hover { transform: translateY(-5px); border-color: var(--secondary-color); }
+        .static-card .static-img { width: 100%; height: 180px; object-fit: cover; }
+        .static-info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: left; }
+        .static-info h3 { font-size: 1.1rem; margin-bottom: 2px; color: var(--text-main); line-height: 1.2; }
+        .static-price-tag { color: var(--primary-color); font-weight: 800; font-size: 1.1rem; margin-bottom: 8px; display: block;}
+
+        @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } 100% { transform: translateX(0); } }
+        .shake-btn { animation: shake 0.4s; background: #5d4037 !important; }
+
+        /* --- 7. NUEVA SECCIÓN CLIENTES --- */
+        #clientes { padding: 40px 0; background: #fff; }
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .client-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        /* Clientes Carrusel en Movil */
+        @media(max-width: 768px) {
+            .clients-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                grid-template-columns: none;
+                padding-bottom: 20px;
+                scrollbar-width: none; /* Firefox */
+            }
+            .clients-grid::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
+            .client-img {
+                min-width: 100%;
+                scroll-snap-align: center;
+                height: 350px;
+            }
+        }
+
+        /* --- 8. EVENTOS, NOSOTROS, UBICACION --- */
+        #eventos { background: linear-gradient(135deg, #fff0f5 0%, #fff 100%); padding: 60px 0; }
+        .pricing-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 30px; }
+        .price-card { background: white; padding: 30px; border-radius: 20px; box-shadow: var(--shadow); width: 300px; text-align: center; border: 1px solid #eee; }
+        .price-card.featured { transform: scale(1.05); border: 2px solid var(--primary-color); position: relative; }
+        .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary-color); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+        .price-val { font-size: 2.5rem; font-weight: 800; color: var(--primary-color); margin: 10px 0; }
+
+        #nosotros { padding: 80px 0; background: white; border-top: 10px solid var(--bg-color); }
+        .about-wrapper { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-text h3 { font-size: 1.8rem; color: var(--text-main); margin-bottom: 20px; }
+        .about-text p { margin-bottom: 15px; font-size: 1.05rem; color: #666; }
+        .about-image { flex: 1; min-width: 300px; display: flex; justify-content: center; }
+        .about-image img { width: 350px; height: 350px; object-fit: cover; border-radius: 30px; box-shadow: 20px 20px 0px var(--secondary-color); border: 5px solid white; }
+
+        #ubicacion { padding: 60px 0; background: white; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+        .map-box { height: 300px; background: #eee; border-radius: 20px; overflow: hidden; }
+
+        footer { background: var(--text-main); color: white; padding: 40px 0 100px; text-align: center; }
+
+        /* --- 9. STICKY CART BAR & MODAL --- */
+        .sticky-cart-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: white; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); z-index: 2000; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; }
+        .cart-summary { display: flex; flex-direction: column; }
+        .cart-summary span { font-size: 0.8rem; color: #666; }
+        .cart-summary strong { font-size: 1.2rem; color: var(--primary-color); }
+        .cart-btn-action { background: #25d366; color: white; padding: 10px 20px; border-radius: 30px; font-weight: bold; display: flex; align-items: center; gap: 8px; border: none; cursor: pointer; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
+
+        .cart-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2500; display: none; justify-content: center; align-items: flex-end; }
+        .cart-modal.open { display: flex; }
+        .cart-content { background: white; width: 100%; max-width: 500px; border-radius: 20px 20px 0 0; padding: 25px; max-height: 80vh; overflow-y: auto; position: relative; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+        @media(min-width: 768px) {
+            .cart-modal { align-items: center; }
+            .cart-content { border-radius: 20px; }
+            .grid-toppings .option-card { flex-direction: row; text-align: left; }
+            .grid-toppings .option-img { width: 100px; height: 100px; } 
+            .info-grid { grid-template-columns: 1fr 1fr; }
+            .nav-links { display: flex; }
+            .hamburger { display: none; }
+            #hero h1 { font-size: 4.5rem; } 
+        }
+
+        @media(max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; padding: 20px; box-shadow: 0 10px 10px rgba(0,0,0,0.05); }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .info-grid { grid-template-columns: 1fr; }
+            .about-image img { width: 100%; height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=18WCH3kGofMDPsSGD7BDPIUvc0xyaeyVs" alt="Logo">
+                D'Eli Fresa
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#catalogo" onclick="resetBuilder()">Fresas</a></li>
+                <li><a href="#frapes">Frapés</a></li>
+                <li><a href="#jugos">Jugos</a></li>
+                <li><a href="#donas">Donas</a></li>
+                <li><a href="#crepas">Crepas</a></li>
+                <li><a href="#waffles">Waffles</a></li>
+                <li><a href="#helados">Helados</a></li>
+                <li><a href="#eventos">Eventos</a></li>
+                <li><a href="#nosotros">Nosotros</a></li> 
+            </ul>
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <span class="hero-badge">100% Frescura & Amor</span>
+            <h1>Postres con <br><span style="color:var(--secondary-color);">Amor</span></h1>
+            <p>¡Arma tu vaso favorito paso a paso con la fruta más fresca!</p>
+            <a href="#catalogo" class="btn btn-primary" onclick="resetBuilder()">
+                ¡Empezar! <i class="fa-solid fa-spoon"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="catalogo" class="container">
+        
+        <div id="step-0" class="step-container active">
+            <div class="step-header">
+                <h2>1. Elige tu Tamaño</h2>
+                <p>Selecciona un vaso para comenzar</p>
+            </div>
+            <div id="grid-cups"></div>
+        </div>
+
+        <div id="step-1" class="step-container">
+            <div class="step-header">
+                <h2>2. Jaleas</h2>
+                <p id="jelly-info-text">Elige tus jaleas favoritas</p>
+            </div>
+            <div class="grid-standard" id="grid-liquids"></div>
+            <div class="controls">
+                <button class="btn btn-outline" onclick="changeStep(0)">Atrás</button>
+                <button class="btn btn-primary" onclick="changeStep(2)">Siguiente</button>
+            </div>
+        </div>
+
+        <div id="step-2" class="step-container">
+            <div class="step-header">
+                <h2>3. Sabores de Crema</h2>
+                <p id="cream-info-text">Elige los sabores que quieras</p>
+            </div>
+            <div class="grid-standard" id="grid-creams"></div>
+            <div class="controls">
+                <button class="btn btn-outline" onclick="changeStep(1)">Atrás</button>
+                <button class="btn btn-primary" onclick="changeStep(3)">Siguiente</button>
+            </div>
+        </div>
+
+        <div id="step-3" class="step-container">
+            <div class="step-header">
+                <h2>4. Frutas</h2>
+                <p id="fruit-info-text">Elige las frutas</p>
+            </div>
+            <div class="grid-standard" id="grid-fruits"></div>
+            <div class="controls">
+                <button class="btn btn-outline" onclick="changeStep(2)">Atrás</button>
+                <button class="btn btn-primary" onclick="changeStep(4)">Siguiente</button>
+            </div>
+        </div>
+
+        <div id="step-4" class="step-container">
+            <div class="step-header">
+                <h2>5. Agrega Toppings</h2>
+                <p id="toppings-info-text">Selecciona tus toppings</p>
+            </div>
+            <div class="grid-toppings" id="grid-toppings"></div>
+            <div class="controls">
+                <button class="btn btn-outline" onclick="changeStep(3)">Atrás</button>
+                <button class="btn btn-primary" onclick="addToCart()">¡Terminar! <i class="fa-solid fa-check"></i></button>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="frapes" class="static-section">
+        <div class="container">
+            <h2 class="section-title">Frapés</h2>
+            <div class="single-product-layout">
+                <div class="main-product-img">
+                    <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1veN_4lAMlpz6Hl-MRWoQRcLcqlRV3V3c" alt="Frapés D'Eli Fresa">
+                </div>
+                <div class="product-options-container">
+                    <div class="variant-block" id="block-frappe-clasico">
+                        <div class="variant-header">
+                            <span class="variant-title">Frapé Clásico</span>
+                            <span class="variant-price">S/ 10.00</span>
+                        </div>
+                        <p class="variant-desc">Elige tu sabor favorito:</p>
+                        <div class="chip-container">
+                            <button class="chip-btn" onclick="selectStaticOption('block-frappe-clasico', 'Manjar', 10, this)">Manjar</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-frappe-clasico', 'Chocolate', 10, this)">Chocolate</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-frappe-clasico', 'Frapuchino', 10, this)">Frapuchino</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-frappe-clasico', 'Mocachino', 10, this)">Mocachino</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-frappe-clasico', 'Mango', 10, this)">Mango</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-frappe-clasico', 'Fresa', 10, this)">Fresa</button>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Frapé Clásico', 10, 'block-frappe-clasico')">Agregar</button>
+                    </div>
+                    <div class="variant-block" id="block-frappe-especial">
+                        <div class="variant-header">
+                            <span class="variant-title">Frapé Especial</span>
+                            <span class="variant-price">S/ 12.00</span>
+                        </div>
+                        <p class="variant-desc">Sabores premium:</p>
+                        <div class="chip-container">
+                            <button class="chip-btn" onclick="selectStaticOption('block-frappe-especial', 'Oreo', 12, this)">Oreo</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-frappe-especial', 'Nutella', 12, this)">Nutella</button>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Frapé Especial', 12, 'block-frappe-especial')">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="jugos" class="static-section" style="background: #fff5f8;">
+        <div class="container">
+            <h2 class="section-title">Jugos de Estación</h2>
+            <div class="single-product-layout">
+                <div class="main-product-img">
+                    <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1xpr5_COhfSx6Kw8uHCi4CBcQkGZXGTYo" alt="Jugos D'Eli Fresa">
+                </div>
+                <div class="product-options-container">
+                    <div class="variant-block" id="block-jugo-clasico">
+                        <div class="variant-header">
+                            <span class="variant-title">Jugo Clásico</span>
+                            <span class="variant-price">S/ 7.00</span>
+                        </div>
+                        <p class="variant-desc">Pura fruta fresca:</p>
+                        <div class="chip-container">
+                            <button class="chip-btn" onclick="selectStaticOption('block-jugo-clasico', 'Fresa', 7, this)">Fresa</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-jugo-clasico', 'Mango', 7, this)">Mango</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-jugo-clasico', 'Papaya', 7, this)">Papaya</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-jugo-clasico', 'Piña', 7, this)">Piña</button>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Jugo Clásico', 7, 'block-jugo-clasico')">Agregar</button>
+                    </div>
+                    <div class="variant-block" id="block-jugo-leche">
+                        <div class="variant-header">
+                            <span class="variant-title">Jugo con Leche</span>
+                            <span class="variant-price">S/ 9.00</span>
+                        </div>
+                        <p class="variant-desc">Más cremoso:</p>
+                        <div class="chip-container">
+                            <button class="chip-btn" onclick="selectStaticOption('block-jugo-leche', 'Fresa', 9, this)">Fresa</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-jugo-leche', 'Mango', 9, this)">Mango</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-jugo-leche', 'Plátano', 9, this)">Plátano</button>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Jugo con Leche', 9, 'block-jugo-leche')">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="donas" class="static-section">
+        <div class="container">
+            <h2 class="section-title">Mini Donitas</h2>
+            <div class="single-product-layout">
+                <div class="main-product-img">
+                    <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=11U-vuvgn62L7c-jNHqbLeCL4SqLokZIr" alt="Mini Donitas D'Eli Fresa">
+                </div>
+                <div class="product-options-container">
+                    <div class="variant-block">
+                        <div class="variant-header">
+                            <span class="variant-title">Pack Pequeño</span>
+                            <span class="variant-price">S/ 5.00</span>
+                        </div>
+                        <p class="variant-desc">4 mini donas + 2 toppings + 2 jaleas</p>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addSimpleStaticToCart('Pack Donitas Pequeño', 5)">Agregar</button>
+                    </div>
+                    <div class="variant-block">
+                        <div class="variant-header">
+                            <span class="variant-title">Pack Mediano</span>
+                            <span class="variant-price">S/ 10.00</span>
+                        </div>
+                        <p class="variant-desc">8 mini donas + 3 toppings + 2 jaleas</p>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addSimpleStaticToCart('Pack Donitas Mediano', 10)">Agregar</button>
+                    </div>
+                    <div class="variant-block">
+                        <div class="variant-header">
+                            <span class="variant-title">Pack Grande</span>
+                            <span class="variant-price">S/ 14.00</span>
+                        </div>
+                        <p class="variant-desc">12 mini donas + 4 toppings + 3 jaleas</p>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addSimpleStaticToCart('Pack Donitas Grande', 14)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="crepas" class="static-section" style="background: #fff5f8;">
+        <div class="container">
+            <h2 class="section-title">Crepas</h2>
+            <div class="single-product-layout">
+                <div class="main-product-img">
+                    <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1_UZUBI62RPWdEb2tnh6ZATiODc0tm1_x" alt="Crepas D'Eli Fresa">
+                </div>
+                <div class="product-options-container">
+                    <div class="variant-block" id="block-crepa-clasica">
+                        <div class="variant-header">
+                            <span class="variant-title">Crepa Clásica</span>
+                            <span class="variant-price" id="price-block-crepa-clasica">Desde S/ 13.00</span>
+                        </div>
+                        <p class="variant-desc">Masa tradicional con manjar o fudge:</p>
+                        <div class="chip-container">
+                            <button class="chip-btn" onclick="selectStaticOption('block-crepa-clasica', '1 Fruta', 13, this)">1 Fruta</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-crepa-clasica', '2 Frutas', 15, this)">2 Frutas</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-crepa-clasica', 'Full+Helado', 17, this)">Full+Helado</button>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Crepa Clásica', 13, 'block-crepa-clasica')">Agregar</button>
+                    </div>
+                    <div class="variant-block" id="block-crepa-nutella">
+                        <div class="variant-header">
+                            <span class="variant-title">Crepa Nutella</span>
+                            <span class="variant-price" id="price-block-crepa-nutella">Desde S/ 15.00</span>
+                        </div>
+                        <p class="variant-desc">Rellena de auténtica Nutella:</p>
+                        <div class="chip-container">
+                            <button class="chip-btn" onclick="selectStaticOption('block-crepa-nutella', '1 Fruta', 15, this)">1 Fruta</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-crepa-nutella', '2 Frutas', 17, this)">2 Frutas</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-crepa-nutella', 'Full+Helado', 19, this)">Full+Helado</button>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Crepa Nutella', 15, 'block-crepa-nutella')">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="waffles" class="static-section">
+        <div class="container">
+            <h2 class="section-title">Waffles</h2>
+            <div class="single-product-layout">
+                <div class="main-product-img">
+                    <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1VYsGVzMQYehfMGQX44nkUmnJyg3h6UQ1" alt="Waffles D'Eli Fresa">
+                </div>
+                <div class="product-options-container">
+                    <div class="variant-block" id="block-waffle-clasico">
+                        <div class="variant-header">
+                            <span class="variant-title">Waffle Clásico</span>
+                            <span class="variant-price" id="price-block-waffle-clasico">Desde S/ 15.00</span>
+                        </div>
+                        <p class="variant-desc">Crujiente por fuera, suave por dentro:</p>
+                        <div class="chip-container">
+                            <button class="chip-btn" onclick="selectStaticOption('block-waffle-clasico', '1 Fruta', 15, this)">1 Fruta</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-waffle-clasico', 'Full+Helado', 18, this)">Full+Helado</button>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Waffle Clásico', 15, 'block-waffle-clasico')">Agregar</button>
+                    </div>
+                    <div class="variant-block" id="block-waffle-nutella">
+                        <div class="variant-header">
+                            <span class="variant-title">Waffle Nutella</span>
+                            <span class="variant-price" id="price-block-waffle-nutella">Desde S/ 17.00</span>
+                        </div>
+                        <p class="variant-desc">Con extra Nutella:</p>
+                        <div class="chip-container">
+                            <button class="chip-btn" onclick="selectStaticOption('block-waffle-nutella', '1 Fruta', 17, this)">1 Fruta</button>
+                            <button class="chip-btn" onclick="selectStaticOption('block-waffle-nutella', 'Full+Helado', 20, this)">Full+Helado</button>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Waffle Nutella', 17, 'block-waffle-nutella')">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="helados" class="static-section" style="background: #fff5f8;">
+        <div class="container">
+            <h2 class="section-title">Helados</h2>
+            <div class="static-grid-cards">
+                <div class="static-card" id="card-helado-soft">
+                    <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=14DBzpf0KUK3X4_X1UHjVyyVmFxLHvRXc" class="static-img">
+                    <div class="static-info">
+                        <h3>Helado Soft</h3>
+                        <span class="static-price-tag">S/ 2.00</span>
+                        <p style="font-size:0.75rem; margin:0 0 5px 0;">Sabor:</p>
+                        <div class="chip-container">
+                            <button class="chip-btn" onclick="selectStaticOption('card-helado-soft', 'Vainilla', 2, this)">Vainilla</button>
+                            <button class="chip-btn" onclick="selectStaticOption('card-helado-soft', 'Chocolate', 2, this)">Choco</button>
+                            <button class="chip-btn" onclick="selectStaticOption('card-helado-soft', 'Mixto', 2, this)">Mixto</button>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Helado Soft', 2, 'card-helado-soft')">Agregar</button>
+                    </div>
+                </div>
+                <div class="static-card" id="card-sundae">
+                    <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1cz4kLGpYJBqNbBqsMxPAdmifHyvWOb8t" class="static-img">
+                    <div class="static-info">
+                        <h3>Sundae</h3>
+                        <span class="static-price-tag" id="price-card-sundae">Desde S/ 4.00</span>
+                        <p style="font-size:0.75rem; margin:0 0 5px 0;">Sabor:</p>
+                        <div class="chip-container">
+                            <button class="chip-btn" onclick="selectStaticOption('card-sundae', 'Chocolate', 4, this)">Choco</button>
+                            <button class="chip-btn" onclick="selectStaticOption('card-sundae', 'Fresa', 4, this)">Fresa</button>
+                            <button class="chip-btn" onclick="selectStaticOption('card-sundae', 'Maracuyá', 4, this)">Maracuyá</button>
+                            <button class="chip-btn" onclick="selectStaticOption('card-sundae', 'Oreo', 5, this)">Oreo (S/5)</button>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Sundae', 4, 'card-sundae')">Agregar</button>
+                    </div>
+                </div>
+                <div class="static-card" id="card-artesanal-vaso">
+                    <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1z_merkXgnHPlzsKLUQj3FLgAWvbQXyk0" class="static-img">
+                    <div class="static-info">
+                        <h3>Vaso Artesanal</h3>
+                        <span class="static-price-tag" id="price-card-artesanal-vaso">Desde S/ 3.00</span>
+                        <p style="font-size:0.75rem; margin:0 0 5px 0;">Tamaño:</p>
+                        <div class="chip-container">
+                            <button class="chip-btn" onclick="selectStaticOption('card-artesanal-vaso', '1 Bola', 3.00, this)">1 Bola</button>
+                            <button class="chip-btn" onclick="selectStaticOption('card-artesanal-vaso', '2 Bolas', 5.00, this)">2 Bolas</button>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Vaso Artesanal', 3.00, 'card-artesanal-vaso')">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="clientes">
+        <div class="container">
+            <h2 class="section-title">Clientes Felices</h2>
+            <div class="clients-grid" id="clientsCarousel">
+                <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1z1cTaA6jCb82EkVuzBm92dvQprNvnHGg" class="client-img">
+                <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1Y5wHyLWT6Lh7nPPIIzVOX2Zy_jzfN3gu" class="client-img">
+                <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1Owb2nlY80WOsQ_47xUSXdSUhLQt21p9n" class="client-img">
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros">
+        <div class="container">
+            <h2 class="section-title">Sobre Nosotros</h2>
+            <div class="about-wrapper">
+                <div class="about-text">
+                    <h3>Pasión por la fresura</h3>
+                    <p>Bienvenido a <strong>D'Eli Fresa</strong>, un rincón donde el amor por los postres se encuentra con la frescura de las mejores frutas seleccionadas.</p>
+                    <div style="margin-top: 20px;">
+                        <span style="font-family: var(--font-title); font-size: 1.5rem; color: var(--primary-color);">Eli</span>
+                        <br>
+                        <small style="color: #999;">Fundadora</small>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1b6QMBkNL6kZdktoMnSzGIbXBVJHBouab" alt="Dueña de D'Eli Fresa">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ubicacion">
+        <div class="container">
+            <h2 class="section-title">Visítanos</h2>
+            <div class="info-grid">
+                <div>
+                    <h3><i class="fa-solid fa-shop"></i> D'Eli Fresa</h3>
+                    <p>Ven y disfruta de los mejores postres de la zona.</p>
+                    <br>
+                    <p><strong>Dirección:</strong> Avenida A Mz.B2 - Lt.8, Ancón 07076</p>
+                    <p><strong>Pedidos:</strong> 920 080 186</p>
+                </div>
+                <div class="map-box">
+                    <iframe src="https://maps.google.com/maps?q=Avenida+A+Mz.B2+Lt.8+Ancon+07076&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 D'Eli Fresa. Todos los derechos reservados.</p>
+            <div style="margin-top: 10px; font-size: 1.5rem;">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram" style="margin: 0 15px;"></i>
+                <i class="fa-brands fa-tiktok"></i>
+            </div>
+        </div>
+    </footer>
+
+    <div class="sticky-cart-bar">
+        <div class="cart-summary">
+            <span id="items-count">0 items</span>
+            <strong id="total-price">S/ 0.00</strong>
+        </div>
+        <button class="cart-btn-action" onclick="openCartModal()">
+            Ver Pedido <i class="fa-solid fa-chevron-up"></i>
+        </button>
+    </div>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+                <h3>Tu Pedido</h3>
+                <i class="fa-solid fa-xmark" style="cursor:pointer; font-size:1.5rem;" onclick="closeCartModal()"></i>
+            </div>
+            
+            <div id="cart-items-container"></div>
+
+            <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 25px;">
+                <button class="btn btn-primary" style="width:100%; background: #25d366; border: none; padding: 15px;" onclick="checkoutWhatsApp()">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Enviar a WhatsApp
+                </button>
+                <button class="btn btn-outline" style="width:100%; padding: 12px;" onclick="closeCartModal()">
+                    <i class="fa-solid fa-plus"></i> Elegir otro producto
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* --- CONFIGURACION DE VASOS Y LIMITES --- */
+        const cups = [
+            { id: 1, name: "Vaso Chiky", price: 5.00, img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1o7jPt6IdCpRsUhNPXkEWctPCpxUAUdDr", limits: { cream: 2, fruit: 1, jelly: 1, topping: 2 } },
+            { id: 2, name: "Vaso Pequeño", price: 8.00, img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1wyjq_f6h2hMG769ltZQztQYEk5M_Y3JY", limits: { cream: 2, fruit: 1, jelly: 2, topping: 2 } }, 
+            { id: 3, name: "Vaso Mediano", price: 12.00, img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=10mze7EcPNd3S_EUhT7qEbiPj_IBOec_T", limits: { cream: 3, fruit: 2, jelly: 3, topping: 3 } },
+            { id: 4, name: "Vaso Grande", price: 16.00, img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1LwLJJv_mG-JPVg6ZcA3q8bEwoMDb-tCJ", limits: { cream: 3, fruit: 2, jelly: 3, topping: 4 } }
+        ];
+
+        // DATOS DE OPCIONES FRESAS (Updated URLs)
+        const liquids = [
+            { name: "Fosh (Fudge)", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1NwOIMfAXazsTyQobSNnBi9h6fhSWX6ov" },
+            { name: "Manjar Blanco", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1Sc4CU1IhL4hu1MdTMVCHcDSOUuRGzI1M" },
+            { name: "Leche Condensada", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1nA32j3yLY4FABNe5TGqXvePIj8SRUD0v" },
+            { name: "Mermelada Fresa", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1mpJuSgqYIUO2ygJRaXqfQjqfeN09l8Xp" }
+        ];
+
+        const creams = [
+            { name: "Choco-Oreo", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1j1TwBuExEft2-XRDNf0nU3Et_wmqUTRo" },
+            { name: "Maracumango", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1K5K7NB_3YHagGdhJM7xIiyivCxoLBE8a" },
+            { name: "Clásica (Vainilla)", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1UXW22lg2h3NAcKdUlrlQtOSDSZUp2tAO" },
+            { name: "Morochas (Mar)", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1tfXuiBo9JFpBvLZTStU_mB2GPMFRGaf3" },
+            { name: "Chocochips (Jue)", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1rUg_5yrKVoFeTG01OHp1iBCaS7teay6S" },
+            { name: "Chocolúcuma (Finde)", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1ScAlUvQCqDu9LV0Cyba1oUi3OCoTG6mA" },
+            { name: "Moka (Finde)", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1apuAPkpDY7PjV77J1dCtBSmwrnWUSe0x" },
+            { name: "Chocomenta (Finde)", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=19R0io00R7AgXXiLQu0-ISjW8JqOZB5Y_" }
+        ];
+
+        const fruits = [
+            { name: "Fresas", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=150P_DhNzrIGBkC1kDAe3wSyuJ01ltRHK" },
+            { name: "Mango", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1US1tRzs4HWODYc5g8V8RyRwoRU4bEoDq" },
+            { name: "Plátano", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1_bkSfrOWzFP4J7AbrQuBddsSD7ZI9tba" }
+        ];
+
+        const toppings = [
+            { name: "Gomita Delfín", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1aiOIaqUSGV0h948FQKg6i4Nto_BURcDI" },
+            { name: "Gomita Gusano", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1qzS5luywtkB47MzNXNbcmah2mL6sYlyz" },
+            { name: "Gomita Osito", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1MpWKBKUysDh9_RNduHOjd_MFn5064wXb" },
+            { name: "Gomita Sandía", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=15cyX86_YreTJ1K5AEkVgA0I5ZYeidJ-z" },
+            { name: "Chispas Blancas", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1OKt3UHTqO0qLRbA346HZMtfLvtXGSYlW" },
+            { name: "Chispas Negras", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1jfsAIx039AJUm6xW2pXrNAjP1MEaZ0h9" },
+            { name: "Choco Maní", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1jeiBAljyGvsaLArfTpyRpqOhtY1ws6Ru" },
+            { name: "Chin Chin", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=134XqSuXek-fKGwQeDOnmrXpS4uohrlpA" },
+            { name: "Granola", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=11VcngLVKGBi3DSK8paD95i5O-fDkwNZf" },
+            { name: "Mini Pícaras", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1dX1vZ3kzgu0P9IxJF_cAV7rVkYmZL_AB" },
+            { name: "Mini Morochas", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1sha0EzQ509VU-hmZzSXP6F1M8QXiVcO_" },
+            { name: "Oreo Trozos", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1kfGL_yDGPgLGeCpihAQc8Xa-pm6xvEWe" },
+            { name: "Choco Yogurt", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1DmL7b51NA5kWxR_1gWQ6V-dVJXRhedeD" },
+            { name: "Marshmellows", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1gZ85nm6Fb_xjpKIfeDn3IXUimXya4vwg" },
+            { name: "Doña Pepa", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1oYunXvCqvgQ-3N6l25h975i3dY63WteB" },
+            { name: "Maní", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1cjRjcpXBZR5LdTo4BwLtRg-F1YF12KQ9" },
+            { name: "Barquillo", img: "https://wsrv.nl/?url=https://drive.google.com/uc?id=1EP0cRvuenWVb-uW2AGVMkf3xJ3QF1zH3" }
+        ];
+
+        /* --- STATE --- */
+        let currentStep = 0;
+        let selection = { cup: null, liquids: [], creams: [], fruits: [], toppings: [] };
+        let cart = [];
+        let staticSelections = {}; // Almacena la selección temporal de cada tarjeta estática
+
+       /* --- INIT --- */
+        function init() {
+            // Render Cups
+            document.getElementById('grid-cups').innerHTML = cups.map(c => `
+                <div class="option-card" onclick="selectCup(${c.id})">
+                    ${c.id === 1 
+                        /* Vaso Chiky: Tamaño normal */
+                        ? `<img src="${c.img}" class="option-img" style="object-fit: cover;">` 
+                        
+                        : (c.id === 4
+                            /* Vaso Grande: Aumentado un 10% (scale 1.1) */
+                            ? `<img src="${c.img}" class="option-img" style="object-fit: cover; transform: scale(1.15);">`
+                            
+                            /* Vasos Pequeño y Mediano: Aumentados un 5% */
+                            : `<img src="${c.img}" class="option-img" style="object-fit: cover; transform: scale(1.07);">`
+                        )
+                    }
+                    <div class="option-details">
+                        <span class="option-name">${c.name}</span>
+                        <span class="option-price">S/ ${c.price.toFixed(2)}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Grids Genericos
+            renderGrid('grid-liquids', liquids, 'liquids');
+            renderGrid('grid-creams', creams, 'creams');
+            renderGrid('grid-fruits', fruits, 'fruits');
+            renderGrid('grid-toppings', toppings, 'toppings');
+
+            // Iniciar Carrusel de Clientes en Móvil
+            startClientCarousel();
+        }
+
+        function renderGrid(elementId, items, category) {
+            document.getElementById(elementId).innerHTML = items.map(item => `
+                <div class="option-card" onclick="toggleSelection('${category}', '${item.name}')" data-cat="${category}" data-name="${item.name}">
+                    ${item.img ? `<img src="${item.img}" class="option-img">` : '<div style="height:100px; background:#eee; display:flex; align-items:center; justify-content:center; font-size:0.7rem; color:#999">FOTO</div>'}
+                    <div class="option-details"><span class="option-name">${item.name}</span></div>
+                </div>
+            `).join('');
+        }
+
+        /* --- NAVIGATION BUILDER --- */
+        function changeStep(newStepIndex) {
+            const currentEl = document.getElementById(`step-${currentStep}`);
+            const nextEl = document.getElementById(`step-${newStepIndex}`);
+            
+            if (currentStep === 0 && !selection.cup && newStepIndex > 0) {
+                alert("Por favor selecciona un vaso primero.");
+                return;
+            }
+
+            currentEl.classList.add('fade-out');
+            setTimeout(() => {
+                currentEl.classList.remove('active', 'fade-out');
+                document.getElementById('catalogo').scrollIntoView({behavior: 'smooth'});
+                nextEl.classList.add('active');
+                currentStep = newStepIndex;
+            }, 400);
+        }
+
+        function resetBuilder() {
+            selection = { cup: null, liquids: [], creams: [], fruits: [], toppings: [] };
+            document.querySelectorAll('.option-card').forEach(el => el.classList.remove('selected'));
+            changeStep(0);
+        }
+
+        /* --- LOGIC SELECTION BUILDER --- */
+        function selectCup(id) {
+            selection.cup = cups.find(c => c.id === id);
+            
+            document.getElementById('jelly-info-text').innerText = `Elige hasta ${selection.cup.limits.jelly} jaleas`;
+            document.getElementById('cream-info-text').innerText = `Elige hasta ${selection.cup.limits.cream} cremas`;
+            document.getElementById('fruit-info-text').innerText = `Elige hasta ${selection.cup.limits.fruit} frutas`;
+            document.getElementById('toppings-info-text').innerText = `Elige hasta ${selection.cup.limits.topping} toppings`;
+
+            changeStep(1);
+        }
+
+        function toggleSelection(category, name) {
+            if (!selection.cup) return;
+            
+            let limitKey = '';
+            if (category === 'liquids') limitKey = 'jelly';
+            else if (category === 'creams') limitKey = 'cream';
+            else if (category === 'fruits') limitKey = 'fruit';
+            else if (category === 'toppings') limitKey = 'topping';
+
+            const limit = selection.cup.limits[limitKey];
+            const array = selection[category];
+            const el = document.querySelector(`.option-card[data-cat="${category}"][data-name="${name}"]`);
+
+            if (array.includes(name)) {
+                const index = array.indexOf(name);
+                if (index > -1) array.splice(index, 1);
+                el.classList.remove('selected');
+            } else {
+                if (array.length >= limit) {
+                    const removed = array.shift();
+                    const removedEl = document.querySelector(`.option-card[data-cat="${category}"][data-name="${removed}"]`);
+                    if(removedEl) removedEl.classList.remove('selected');
+                }
+                array.push(name);
+                el.classList.add('selected');
+            }
+        }
+
+        /* --- STATIC CATALOG LOGIC (CHIPS) --- */
+        function selectStaticOption(blockId, optionName, price, btnElement) {
+            // Guardar selección
+            staticSelections[blockId] = { name: optionName, price: price };
+            
+            // Actualizar visualmente los botones dentro del bloque
+            const container = document.getElementById(blockId).querySelector('.chip-container');
+            const buttons = container.querySelectorAll('.chip-btn');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            btnElement.classList.add('selected');
+
+            // Actualizar precio visual si es necesario
+            const priceTag = document.getElementById(`price-${blockId}`);
+            if(priceTag) {
+                priceTag.innerText = `S/ ${price.toFixed(2)}`;
+            }
+        }
+
+        function addStaticToCartWithValidation(productName, defaultPrice, blockId) {
+            // Verificar si se seleccionó una opción
+            if (!staticSelections[blockId]) {
+                const btn = document.querySelector(`#${blockId} .btn-primary`);
+                btn.classList.add('shake-btn');
+                setTimeout(() => btn.classList.remove('shake-btn'), 500);
+                if(navigator.vibrate) navigator.vibrate(200);
+                alert("⚠️ Por favor, selecciona un sabor u opción antes de agregar.");
+                return;
+            }
+
+            const selected = staticSelections[blockId];
+            
+            cart.push({
+                name: `${productName} - ${selected.name}`,
+                price: selected.price, // Usar precio seleccionado
+                details: null,
+                cartId: Date.now()
+            });
+            
+            updateCartBar();
+            renderCartList();
+            openCartModal();
+        }
+
+        function addSimpleStaticToCart(name, price) {
+            cart.push({
+                name: name,
+                price: price,
+                details: null,
+                cartId: Date.now()
+            });
+            updateCartBar();
+            renderCartList();
+            openCartModal();
+        }
+
+        /* --- CART LOGIC --- */
+        function addToCart() {
+            cart.push({
+                name: selection.cup.name,
+                price: selection.cup.price,
+                details: JSON.parse(JSON.stringify(selection)), 
+                cartId: Date.now()
+            });
+            updateCartBar();
+            resetBuilder(); 
+            renderCartList();
+            openCartModal();
+        }
+
+        function updateCartBar() {
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('items-count').innerText = `${cart.length} items`;
+            document.getElementById('total-price').innerText = `S/ ${total.toFixed(2)}`;
+        }
+
+        function renderCartList() {
+            const container = document.getElementById('cart-items-container');
+            if (cart.length === 0) {
+                container.innerHTML = "<p style='text-align:center; color:#999'>Tu carrito está vacío.</p>";
+                return;
+            }
+            container.innerHTML = cart.map(item => {
+                let desc = "";
+                if(item.details) {
+                    desc = `
+                        <div style="font-size:0.8rem; color:#666; margin-top:5px;">
+                            Jaleas: ${item.details.liquids.join(', ') || '-'} <br>
+                            Cremas: ${item.details.creams.join(', ') || '-'} <br>
+                            Frutas: ${item.details.fruits.join(', ') || '-'} <br>
+                            Toppings: ${item.details.toppings.join(', ') || 'Ninguno'}
+                        </div>`;
+                } else {
+                    desc = `<div style="font-size:0.8rem; color:#999; margin-top:5px;">Opción seleccionada</div>`;
+                }
+
+                return `
+                <div style="border-bottom:1px solid #eee; padding:10px 0; display:flex; justify-content:space-between; align-items:center;">
+                    <div style="max-width: 85%;">
+                        <strong>${item.name}</strong> <span style="color:var(--primary-color)">S/ ${item.price.toFixed(2)}</span>
+                        ${desc}
+                    </div>
+                    <i class="fa-solid fa-trash" style="color:red; cursor:pointer;" onclick="removeFromCart(${item.cartId})"></i>
+                </div>`;
+            }).join('');
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(x => x.cartId !== id);
+            updateCartBar();
+            renderCartList();
+        }
+
+        function openCartModal() { renderCartList(); document.getElementById('cartModal').classList.add('open'); }
+        function closeCartModal() { document.getElementById('cartModal').classList.remove('open'); }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return;
+            const phone = "51920080186";
+            let msg = "Hola Deli Fresa, mi pedido:\n\n";
+            let total = 0;
+            cart.forEach((item, i) => {
+                total += item.price;
+                msg += `${i+1}. *${item.name}* (S/ ${item.price})`;
+                
+                if(item.details) {
+                    msg += `\n   - Jaleas: ${item.details.liquids.join(', ')}`;
+                    msg += `\n   - Cremas: ${item.details.creams.join(', ')}`;
+                    msg += `\n   - Frutas: ${item.details.fruits.join(', ')}`;
+                    msg += `\n   - Toppings: ${item.details.toppings.join(', ')}\n\n`;
+                } else {
+                    msg += `\n\n`; 
+                }
+            });
+            msg += `*Total: S/ ${total.toFixed(2)}*`;
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+
+        // Función para el carrusel automático en móvil
+        function startClientCarousel() {
+            const carousel = document.getElementById('clientsCarousel');
+            if (window.innerWidth > 768) return; // Solo en móvil
+
+            setInterval(() => {
+                const scrollAmount = carousel.offsetWidth;
+                const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                
+                if (carousel.scrollLeft + scrollAmount >= maxScroll) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 2500); // Cambia cada 2.5 segundos
+        }
+
+        init();
+    </script>
+</body>
+</html>

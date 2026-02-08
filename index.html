@@ -360,12 +360,12 @@
         /* CAMBIO PC: Botones más chicos y Chips más grandes */
         @media(min-width: 1024px) {
             .variant-block .btn-primary {
-                width: auto !important; /* Quita el width 100% */
+                width: auto !important; 
                 padding: 10px 40px;
                 display: inline-block;
             }
             .chip-btn {
-                font-size: 0.9rem; /* Chips más grandes */
+                font-size: 0.9rem;
                 padding: 8px 15px;
             }
             .static-info .btn-primary {
@@ -416,7 +416,6 @@
             border-radius: 20px;
             box-shadow: var(--shadow);
         }
-        /* Clientes Carrusel en Movil */
         @media(max-width: 768px) {
             .clients-grid {
                 display: flex;
@@ -424,9 +423,9 @@
                 scroll-snap-type: x mandatory;
                 grid-template-columns: none;
                 padding-bottom: 20px;
-                scrollbar-width: none; /* Firefox */
+                scrollbar-width: none; 
             }
-            .clients-grid::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
+            .clients-grid::-webkit-scrollbar { display: none; }
             .client-img {
                 min-width: 100%;
                 scroll-snap-align: center;
@@ -680,7 +679,7 @@
                             <span class="variant-price">S/ 5.00</span>
                         </div>
                         <p class="variant-desc">4 mini donas + 2 toppings + 2 jaleas</p>
-                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addSimpleStaticToCart('Pack Donitas Pequeño', 5)">Agregar</button>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="openConfigModal('Mini Donitas', 'Pack Pequeño', 5)">Agregar</button>
                     </div>
                     <div class="variant-block">
                         <div class="variant-header">
@@ -688,7 +687,7 @@
                             <span class="variant-price">S/ 10.00</span>
                         </div>
                         <p class="variant-desc">8 mini donas + 3 toppings + 2 jaleas</p>
-                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addSimpleStaticToCart('Pack Donitas Mediano', 10)">Agregar</button>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="openConfigModal('Mini Donitas', 'Pack Mediano', 10)">Agregar</button>
                     </div>
                     <div class="variant-block">
                         <div class="variant-header">
@@ -696,7 +695,7 @@
                             <span class="variant-price">S/ 14.00</span>
                         </div>
                         <p class="variant-desc">12 mini donas + 4 toppings + 3 jaleas</p>
-                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addSimpleStaticToCart('Pack Donitas Grande', 14)">Agregar</button>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="openConfigModal('Mini Donitas', 'Pack Grande', 14)">Agregar</button>
                     </div>
                 </div>
             </div>
@@ -812,7 +811,19 @@
                         <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Sundae', 4, 'card-sundae')">Agregar</button>
                     </div>
                 </div>
-                
+                <div class="static-card" id="card-artesanal-cono">
+                    <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1z_merkXgnHPlzsKLUQj3FLgAWvbQXyk0" class="static-img">
+                    <div class="static-info">
+                        <h3>Cono Artesanal</h3>
+                        <span class="static-price-tag" id="price-card-artesanal-cono">Desde S/ 2.50</span>
+                        <p style="font-size:0.75rem; margin:0 0 5px 0;">Tamaño:</p>
+                        <div class="chip-container">
+                            <button class="chip-btn" onclick="selectStaticOption('card-artesanal-cono', '1 Bola', 2.50, this)">1 Bola</button>
+                            <button class="chip-btn" onclick="selectStaticOption('card-artesanal-cono', '2 Bolas', 4.00, this)">2 Bolas</button>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="width:100%" onclick="addStaticToCartWithValidation('Cono Artesanal', 2.50, 'card-artesanal-cono')">Agregar</button>
+                    </div>
+                </div>
                 <div class="static-card" id="card-artesanal-vaso">
                     <img src="https://wsrv.nl/?url=https://drive.google.com/uc?id=1z_merkXgnHPlzsKLUQj3FLgAWvbQXyk0" class="static-img">
                     <div class="static-info">
@@ -869,11 +880,18 @@
                     <h3><i class="fa-solid fa-shop"></i> D'Eli Fresa</h3>
                     <p>Ven y disfruta de los mejores postres de la zona.</p>
                     <br>
-                    <p><strong>Dirección:</strong> Avenida A Mz.B2 - Lt.8, Ancón 07076</p>
+                    <p><strong>Dirección:</strong> Avenida A Mz.B2 - Lt.5, Ancón 07076</p>
                     <p><strong>Pedidos:</strong> 920 080 186</p>
                 </div>
                 <div class="map-box">
-                    <iframe src="https://maps.google.com/maps?q=Avenida+A+Mz.B2+Lt.8+Ancon+07076&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe 
+    src="https://maps.google.com/maps?q=Avenida%20A%20Mz.B2%20Lt.5,%20Anc%C3%B3n&t=&z=18&ie=UTF8&iwloc=&output=embed" 
+    width="100%" 
+    height="100%" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy">
+</iframe>
                 </div>
             </div>
         </div>
@@ -1030,6 +1048,7 @@
             // Iniciar Carrusel de Clientes en Móvil
             startClientCarousel();
         }
+
         function renderGrid(elementId, items, category) {
             document.getElementById(elementId).innerHTML = items.map(item => `
                 <div class="option-card" onclick="toggleSelection('${category}', '${item.name}')" data-cat="${category}" data-name="${item.name}">
@@ -1067,15 +1086,18 @@
         /* --- LOGIC SELECTION BUILDER --- */
         function selectCup(id) {
             selection.cup = cups.find(c => c.id === id);
+            
             document.getElementById('jelly-info-text').innerText = `Elige hasta ${selection.cup.limits.jelly} jaleas`;
             document.getElementById('cream-info-text').innerText = `Elige hasta ${selection.cup.limits.cream} cremas`;
             document.getElementById('fruit-info-text').innerText = `Elige hasta ${selection.cup.limits.fruit} frutas`;
             document.getElementById('toppings-info-text').innerText = `Elige hasta ${selection.cup.limits.topping} toppings`;
+
             changeStep(1);
         }
 
         function toggleSelection(category, name) {
             if (!selection.cup) return;
+            
             let limitKey = '';
             if (category === 'liquids') limitKey = 'jelly';
             else if (category === 'creams') limitKey = 'cream';
@@ -1101,18 +1123,26 @@
             }
         }
 
-        /* --- STATIC CATALOG LOGIC --- */
+        /* --- STATIC CATALOG LOGIC (CHIPS) --- */
         function selectStaticOption(blockId, optionName, price, btnElement) {
+            // Guardar selección
             staticSelections[blockId] = { name: optionName, price: price };
+            
+            // Actualizar visualmente los botones dentro del bloque
             const container = document.getElementById(blockId).querySelector('.chip-container');
             const buttons = container.querySelectorAll('.chip-btn');
             buttons.forEach(btn => btn.classList.remove('selected'));
             btnElement.classList.add('selected');
+
+            // Actualizar precio visual si es necesario
             const priceTag = document.getElementById(`price-${blockId}`);
-            if(priceTag) priceTag.innerText = `S/ ${price.toFixed(2)}`;
+            if(priceTag) {
+                priceTag.innerText = `S/ ${price.toFixed(2)}`;
+            }
         }
 
         function addStaticToCartWithValidation(productName, defaultPrice, blockId) {
+            // Verificar si se seleccionó una opción
             if (!staticSelections[blockId]) {
                 const btn = document.querySelector(`#${blockId} .btn-primary`);
                 btn.classList.add('shake-btn');
@@ -1121,10 +1151,25 @@
                 alert("⚠️ Por favor, selecciona un sabor u opción antes de agregar.");
                 return;
             }
+
             const selected = staticSelections[blockId];
+            
             cart.push({
                 name: `${productName} - ${selected.name}`,
-                price: selected.price,
+                price: selected.price, // Usar precio seleccionado
+                details: null,
+                cartId: Date.now()
+            });
+            
+            updateCartBar();
+            renderCartList();
+            openCartModal();
+        }
+
+        function addSimpleStaticToCart(name, price) {
+            cart.push({
+                name: name,
+                price: price,
                 details: null,
                 cartId: Date.now()
             });
@@ -1133,23 +1178,19 @@
             openCartModal();
         }
 
-        function addSimpleStaticToCart(name, price) {
-            cart.push({ name: name, price: price, details: null, cartId: Date.now() });
-            updateCartBar();
-            renderCartList();
-            openCartModal();
-        }
-
-        /* --- COMPLEX CONFIG MODAL (CREPES/WAFFLES) --- */
+        /* --- COMPLEX CONFIG MODAL (CREPES/WAFFLES/DONUTS) --- */
         function openConfigModal(productName, variantName, price) {
             tempConfig = {
                 productName: productName,
                 variant: variantName,
+                basePrice: price,
                 price: price,
                 base: [],
                 fruits: [],
                 iceCream: [],
-                toppings: []
+                toppings: [],
+                liquids: [], // Para donitas
+                extraCream: false // Para donitas
             };
 
             document.getElementById('config-modal-title').innerText = `${productName} - ${variantName}`;
@@ -1157,55 +1198,94 @@
             
             let html = '';
 
-            // 1. BASE (Siempre para Clásica, implícito en Nutella)
-            if(productName.includes("Clásic")) {
+            // --- LÓGICA PARA DONITAS ---
+            if(productName.includes("Donitas")) {
+                // Limite Jaleas
+                let jellyLimit = 2;
+                if(variantName.includes("Grande")) jellyLimit = 3;
+
                 html += `
                 <div class="config-section">
-                    <span class="config-title">Elige Base (1):</span>
+                    <span class="config-title">Elige Jaleas (${jellyLimit}):</span>
                     <div class="chip-container">
-                        <button class="chip-btn" onclick="toggleConfig('base', 'Fosh', 1, this)">Fosh</button>
-                        <button class="chip-btn" onclick="toggleConfig('base', 'Manjar', 1, this)">Manjar</button>
+                        ${liquids.map(l => `<button class="chip-btn" onclick="toggleConfig('liquids', '${l.name}', ${jellyLimit}, this)">${l.name}</button>`).join('')}
                     </div>
                 </div>`;
-            }
 
-            // 2. FRUTAS (Depende de variante)
-            let fruitLimit = variantName.includes("1 Fruta") ? 1 : 2;
-            html += `
-            <div class="config-section">
-                <span class="config-title">Elige Fruta(s) (${fruitLimit}):</span>
-                <div class="chip-container">
-                    ${fruits.map(f => `<button class="chip-btn" onclick="toggleConfig('fruits', '${f.name}', ${fruitLimit}, this)">${f.name}</button>`).join('')}
-                </div>
-            </div>`;
+                // Limite Toppings
+                let toppingLimit = 2;
+                if(variantName.includes("Mediano")) toppingLimit = 3;
+                if(variantName.includes("Grande")) toppingLimit = 4;
 
-            // 3. HELADO Y TOPPING (Solo si es FULL o Waffles avanzados)
-            if(variantName.includes("Full") || (productName.includes("Waffle") && variantName.includes("Full"))) {
                 html += `
                 <div class="config-section">
-                    <span class="config-title">Elige Helado/Crema (1):</span>
-                    <div class="chip-container">
-                        <button class="chip-btn" onclick="toggleConfig('iceCream', 'Vainilla', 1, this)">Vainilla</button>
-                        <button class="chip-btn" onclick="toggleConfig('iceCream', 'Chocolate', 1, this)">Chocolate</button>
-                        <button class="chip-btn" onclick="toggleConfig('iceCream', 'Mixto', 1, this)">Mixto</button>
-                    </div>
-                </div>`;
-            }
-
-            // 4. TOPPINGS (Si corresponde)
-            // Lógica: Waffles Full lleva 2, Crepas Full lleva 1, Clásicas llevan 1 (si es waffle) o 0
-            let toppingLimit = 0;
-            if(variantName.includes("Full") && productName.includes("Waffle")) toppingLimit = 2;
-            else if(variantName.includes("Full") || productName.includes("Waffle")) toppingLimit = 1;
-
-            if(toppingLimit > 0) {
-                html += `
-                <div class="config-section">
-                    <span class="config-title">Elige Topping(s) (${toppingLimit}):</span>
+                    <span class="config-title">Elige Toppings (${toppingLimit}):</span>
                     <div class="chip-container">
                         ${toppings.map(t => `<button class="chip-btn" onclick="toggleConfig('toppings', '${t.name}', ${toppingLimit}, this)">${t.name}</button>`).join('')}
                     </div>
                 </div>`;
+
+                // Botón Extra Crema
+                html += `
+                <div class="config-section" style="border-top:1px dashed #eee; padding-top:10px;">
+                    <button class="chip-btn" id="btn-extra-cream" onclick="toggleExtraCream(this)" style="width:100%; text-align:center; font-weight:bold;">
+                        + Agregar Crema Adicional (S/ 2.00)
+                    </button>
+                </div>`;
+
+            } else {
+                // --- LÓGICA PARA CREPAS Y WAFFLES ---
+                
+                // 1. BASE (Siempre para Clásica, implícito en Nutella)
+                if(productName.includes("Clásic")) {
+                    html += `
+                    <div class="config-section">
+                        <span class="config-title">Elige Base (1):</span>
+                        <div class="chip-container">
+                            <button class="chip-btn" onclick="toggleConfig('base', 'Fosh', 1, this)">Fosh</button>
+                            <button class="chip-btn" onclick="toggleConfig('base', 'Manjar', 1, this)">Manjar</button>
+                        </div>
+                    </div>`;
+                }
+
+                // 2. FRUTAS (Depende de variante)
+                let fruitLimit = variantName.includes("1 Fruta") ? 1 : 2;
+                html += `
+                <div class="config-section">
+                    <span class="config-title">Elige Fruta(s) (${fruitLimit}):</span>
+                    <div class="chip-container">
+                        ${fruits.map(f => `<button class="chip-btn" onclick="toggleConfig('fruits', '${f.name}', ${fruitLimit}, this)">${f.name}</button>`).join('')}
+                    </div>
+                </div>`;
+
+                // 3. HELADO Y TOPPING (Solo si es FULL o Waffles avanzados)
+                if(variantName.includes("Full") || (productName.includes("Waffle") && variantName.includes("Full"))) {
+                    html += `
+                    <div class="config-section">
+                        <span class="config-title">Elige Helado/Crema (1):</span>
+                        <div class="chip-container">
+                            <button class="chip-btn" onclick="toggleConfig('iceCream', 'Vainilla', 1, this)">Vainilla</button>
+                            <button class="chip-btn" onclick="toggleConfig('iceCream', 'Chocolate', 1, this)">Chocolate</button>
+                            <button class="chip-btn" onclick="toggleConfig('iceCream', 'Mixto', 1, this)">Mixto</button>
+                        </div>
+                    </div>`;
+                }
+
+                // 4. TOPPINGS (Si corresponde)
+                // Lógica: Waffles Full lleva 2, Crepas Full lleva 1, Clásicas llevan 1 (si es waffle) o 0
+                let toppingLimit = 0;
+                if(variantName.includes("Full") && productName.includes("Waffle")) toppingLimit = 2;
+                else if(variantName.includes("Full") || productName.includes("Waffle")) toppingLimit = 1;
+
+                if(toppingLimit > 0) {
+                    html += `
+                    <div class="config-section">
+                        <span class="config-title">Elige Topping(s) (${toppingLimit}):</span>
+                        <div class="chip-container">
+                            ${toppings.map(t => `<button class="chip-btn" onclick="toggleConfig('toppings', '${t.name}', ${toppingLimit}, this)">${t.name}</button>`).join('')}
+                        </div>
+                    </div>`;
+                }
             }
 
             document.getElementById('config-form-container').innerHTML = html;
@@ -1230,18 +1310,37 @@
             }
         }
 
+        function toggleExtraCream(btn) {
+            tempConfig.extraCream = !tempConfig.extraCream;
+            if(tempConfig.extraCream) {
+                btn.classList.add('selected');
+                tempConfig.price = tempConfig.basePrice + 2;
+            } else {
+                btn.classList.remove('selected');
+                tempConfig.price = tempConfig.basePrice;
+            }
+            document.getElementById('config-modal-subtitle').innerText = `Precio: S/ ${tempConfig.price.toFixed(2)}`;
+        }
+
         function closeConfigModal() { document.getElementById('configModal').classList.remove('open'); }
 
         function finishConfigAndAdd() {
-            // Validaciones básicas (opcional pero recomendado)
-            if(tempConfig.productName.includes("Clásic") && tempConfig.base.length === 0) { alert("Elige una base"); return; }
+            // Validaciones básicas 
+            if(tempConfig.productName.includes("Clásic") && !tempConfig.productName.includes("Waffle") && tempConfig.base.length === 0) { 
+                // Excepcion para donitas que no tienen base, ni waffles que ya tienen
+                if(!tempConfig.productName.includes("Donitas")) {
+                    alert("Elige una base"); return; 
+                }
+            }
             
             // Construir descripcion
             let detailsText = "";
             if(tempConfig.base.length) detailsText += `Base: ${tempConfig.base.join(', ')} | `;
+            if(tempConfig.liquids.length) detailsText += `Jaleas: ${tempConfig.liquids.join(', ')} | `;
             if(tempConfig.fruits.length) detailsText += `Fruta: ${tempConfig.fruits.join(', ')} | `;
             if(tempConfig.iceCream.length) detailsText += `Helado: ${tempConfig.iceCream.join(', ')} | `;
-            if(tempConfig.toppings.length) detailsText += `Topping: ${tempConfig.toppings.join(', ')}`;
+            if(tempConfig.toppings.length) detailsText += `Toppings: ${tempConfig.toppings.join(', ')}`;
+            if(tempConfig.extraCream) detailsText += ` | + CREMA ADICIONAL`;
 
             cart.push({
                 name: `${tempConfig.productName} (${tempConfig.variant})`,
@@ -1344,15 +1443,21 @@
 
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
 
+        // Función para el carrusel automático en móvil
         function startClientCarousel() {
             const carousel = document.getElementById('clientsCarousel');
-            if (window.innerWidth > 768) return; 
+            if (window.innerWidth > 768) return; // Solo en móvil
+
             setInterval(() => {
                 const scrollAmount = carousel.offsetWidth;
                 const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-                if (carousel.scrollLeft + scrollAmount >= maxScroll) carousel.scrollTo({ left: 0, behavior: 'smooth' });
-                else carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            }, 2500); 
+                
+                if (carousel.scrollLeft + scrollAmount >= maxScroll) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 2500); // Cambia cada 2.5 segundos
         }
 
         init();

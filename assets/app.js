@@ -534,10 +534,7 @@ function setupStrawberryStory() {
         const progress = reducedMotion ? 1 : Math.min(1, Math.max(0, -rect.top / travel));
         story.style.setProperty('--story-progress', `${Math.round(progress * 100)}%`);
         story.style.setProperty('--story-progress-number', progress.toFixed(3));
-        [0.10, 0.27, 0.44, 0.61, 0.78].forEach((threshold, index) => {
-            const bite = Math.min(1, Math.max(0, (progress - threshold) / 0.10));
-            story.style.setProperty(`--bite-${index + 1}`, bite.toFixed(3));
-        });
+        story.style.setProperty('--story-reveal', `${Math.round((1 - progress) * 100)}%`);
     };
 
     let scheduled = false;

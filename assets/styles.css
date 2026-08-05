@@ -191,14 +191,11 @@ header {
     margin-bottom: 24px;
 }
 
-/* --- HISTORIA DE ANTOJO: FRESA MORDIDA --- */
+/* --- HISTORIA DE ANTOJO: ANTES Y DESPUÉS FOTOGRÁFICO --- */
 .strawberry-scroll {
-    --bite-1: 0;
-    --bite-2: 0;
-    --bite-3: 0;
-    --bite-4: 0;
-    --bite-5: 0;
     --story-progress: 0%;
+    --story-progress-number: 0;
+    --story-reveal: 100%;
     min-height: 132vh;
     background:
         radial-gradient(circle at 18% 24%, rgba(255,255,255,.8) 0 7%, transparent 8%),
@@ -231,14 +228,13 @@ header {
 
 .strawberry-scroll__copy h2 { font-family: var(--font-title); font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1.04; margin: 14px 0; color: var(--text-main); }
 .strawberry-scroll__copy p { font-size: clamp(1rem, 1.8vw, 1.25rem); color: #7c5355; }
-.strawberry-bite { width: min(44vw, 430px); aspect-ratio: 1; margin: 0 auto; position: relative; filter: drop-shadow(0 28px 26px rgba(142,32,56,.18)); transform: rotate(-5deg); }
-.strawberry-fruit { position: absolute; inset: 16% 8% 3%; overflow: hidden; background: radial-gradient(circle at 38% 26%, #ff718d, transparent 24%), linear-gradient(145deg,#ff5d79 4%,#f52d58 52%,#ca123e); border-radius: 52% 48% 48% 52% / 40% 42% 70% 68%; clip-path: polygon(50% 0, 88% 13%, 100% 42%, 83% 73%, 52% 100%, 20% 74%, 0 42%, 12% 14%); }
-.strawberry-leaf { position: absolute; z-index: 2; width: 34%; height: 20%; top: 6%; left: 34%; background: linear-gradient(135deg,#84bf4c,#397b37); border-radius: 100% 0 100% 0; transform-origin: bottom center; }
-.leaf-one { transform: rotate(-28deg); }.leaf-two { transform: rotate(8deg) scale(.92); }.leaf-three { transform: rotate(43deg) scale(.82); }
-.seed { position: absolute; width: 3.6%; height: 6%; border-radius: 50%; background: #ffe8a3; transform: rotate(18deg); box-shadow: inset 0 1px 2px rgba(90,45,20,.2); }
-.seed-1{left:30%;top:24%}.seed-2{left:52%;top:18%}.seed-3{left:70%;top:30%}.seed-4{left:20%;top:43%}.seed-5{left:46%;top:43%}.seed-6{left:75%;top:51%}.seed-7{left:32%;top:66%}.seed-8{left:55%;top:70%}.seed-9{left:48%;top:86%}
-.bite { position: absolute; width: 38%; aspect-ratio: 1; border-radius: 50%; background: #ffdce6; transform: scale(0); transition: transform .18s ease-out; box-shadow: -3px 1px 0 rgba(132,24,53,.06); }
-.bite-1{right:-5%;top:1%;transform:scale(var(--bite-1))}.bite-2{right:-8%;top:20%;transform:scale(var(--bite-2))}.bite-3{right:-4%;top:40%;transform:scale(var(--bite-3))}.bite-4{right:1%;top:59%;transform:scale(var(--bite-4))}.bite-5{right:14%;top:74%;transform:scale(var(--bite-5))}
+.dessert-story { width:min(44vw,430px); aspect-ratio:3/4; margin:0 auto; position:relative; overflow:hidden; border-radius:36px; background:#fff; box-shadow:0 28px 60px rgba(142,32,56,.22); }
+.dessert-story img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.dessert-story__before { opacity:1; }
+.dessert-story__after { opacity:var(--story-progress-number); clip-path:inset(var(--story-reveal) 0 0 0); }
+.dessert-story__label { position:absolute; z-index:2; left:18px; bottom:18px; padding:9px 14px; border-radius:999px; background:rgba(255,255,255,.9); color:#6e293c; font-size:.76rem; font-weight:800; box-shadow:0 8px 24px rgba(71,20,34,.14); backdrop-filter:blur(8px); }
+.dessert-story__label--before { opacity:calc(1 - var(--story-progress-number)); }
+.dessert-story__label--after { opacity:var(--story-progress-number); }
 .strawberry-scroll__progress { position:absolute; bottom:24px; left:0; right:0; height:4px; background:rgba(255,77,128,.14); border-radius:10px; overflow:hidden; }
 .strawberry-scroll__progress span { display:block; width:var(--story-progress); height:100%; background:var(--primary-color); transition:width .08s linear; }
 
@@ -314,13 +310,16 @@ header {
 }
 
 @media(max-width: 768px) {
-    #hero { min-height: 78svh; background-position: 61% center; align-items:flex-end; }
-    .hero-content { margin:0; width:100%; padding:120px 24px 54px; background:linear-gradient(0deg,rgba(255,248,244,.98),rgba(255,248,244,.82) 65%,transparent); }
-    #hero h1 { font-size:clamp(3rem,15vw,4.4rem); }
+    #hero { min-height: 88svh; background-position: 63% center; align-items:flex-end; padding:18px 16px 28px; }
+    .hero-content { margin:0; width:100%; max-width:none; padding:22px; border:1px solid rgba(255,255,255,.72); border-radius:26px; background:rgba(255,250,247,.86); box-shadow:0 18px 50px rgba(111,38,55,.18); backdrop-filter:blur(7px); }
+    .hero-badge { margin-bottom:12px; padding:7px 14px; font-size:.68rem; letter-spacing:1.4px; }
+    #hero h1 { font-size:clamp(2.75rem,13vw,3.8rem); margin-bottom:.7rem; }
+    #hero p { margin-bottom:18px; font-size:.95rem; line-height:1.55; }
     .strawberry-scroll { min-height:118vh; }
-    .strawberry-scroll__sticky { top:104px; min-height:calc(100svh - 104px); grid-template-columns:1fr; grid-template-rows:auto 1fr; gap:12px; padding:30px 0 46px; text-align:center; }
-    .strawberry-scroll__copy h2 { font-size:clamp(2.3rem,12vw,3.7rem); }
-    .strawberry-bite { width:min(76vw,390px); }
+    .strawberry-scroll__sticky { top:104px; min-height:calc(100svh - 104px); grid-template-columns:1fr; grid-template-rows:auto 1fr; gap:14px; padding:22px 0 40px; text-align:center; }
+    .strawberry-scroll__copy h2 { font-size:clamp(2rem,10vw,3.2rem); margin:8px 0; }
+    .strawberry-scroll__copy p { font-size:.92rem; }
+    .dessert-story { width:min(78vw,340px); max-height:54svh; }
     .kids-campaign__grid { grid-template-columns:1fr; }
     .kids-campaign__photo { min-height:520px; border-radius:28px; }
     .kids-campaign__actions .btn { width:100%; }
@@ -344,12 +343,22 @@ header {
         flex-shrink: 0;
     }
     #grid-cups .option-img { height: 240px; }
+
+    #grid-creams,
+    #grid-toppings { grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+    #grid-creams .option-card,
+    #grid-toppings .option-card { min-width:0; border-radius:14px; }
+    #grid-creams .option-img,
+    #grid-toppings .option-img { width:100%; height:82px; object-fit:cover; }
+    #grid-creams .option-details,
+    #grid-toppings .option-details { padding:9px 5px 10px; }
+    #grid-creams .option-name,
+    #grid-toppings .option-name { font-size:.7rem; line-height:1.2; overflow-wrap:anywhere; }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .hero-content { animation:none; }
-    .strawberry-bite { transform:none; }
-    .bite { transition:none; }
+    .dessert-story__after { opacity:1; clip-path:none; }
 }
 
 /* GRID TOPPINGS */

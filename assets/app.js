@@ -500,7 +500,6 @@ function checkoutWhatsApp() {
         msg += `- 1 × ${item.name} — S/ ${Number(item.price).toFixed(2)}${details ? ' | ' + details : ''}\n`;
     });
     msg += `\nTotal: S/ ${total.toFixed(2)}`;
-    msg += "\n\nEntrega y pago: por coordinar en este chat.";
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
@@ -523,31 +522,5 @@ function startClientCarousel() {
     }, 2500); // Cambia cada 2.5 segundos
 }
 
-function setupStrawberryStory() {
-    const story = document.getElementById('antojo');
-    if (!story) return;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const render = () => {
-        const rect = story.getBoundingClientRect();
-        const travel = Math.max(1, story.offsetHeight - window.innerHeight);
-        const progress = reducedMotion ? 1 : Math.min(1, Math.max(0, -rect.top / travel));
-        story.style.setProperty('--story-progress', `${Math.round(progress * 100)}%`);
-        story.style.setProperty('--story-progress-number', progress.toFixed(3));
-        story.style.setProperty('--story-reveal', `${Math.round((1 - progress) * 100)}%`);
-    };
-
-    let scheduled = false;
-    const requestRender = () => {
-        if (scheduled) return;
-        scheduled = true;
-        requestAnimationFrame(() => { scheduled = false; render(); });
-    };
-    render();
-    addEventListener('scroll', requestRender, { passive: true });
-    addEventListener('resize', requestRender, { passive: true });
-}
-
 init();
-setupStrawberryStory();
 

@@ -191,33 +191,6 @@ header {
     margin-bottom: 24px;
 }
 
-/* --- HISTORIA DE ANTOJO: ANTES Y DESPUÉS FOTOGRÁFICO --- */
-.strawberry-scroll {
-    --story-progress: 0%;
-    --story-progress-number: 0;
-    --story-reveal: 100%;
-    min-height: 132vh;
-    background:
-        radial-gradient(circle at 18% 24%, rgba(255,255,255,.8) 0 7%, transparent 8%),
-        radial-gradient(circle at 80% 78%, rgba(255,255,255,.5) 0 11%, transparent 12%),
-        linear-gradient(135deg, #fff8f2, #ffdce6 58%, #ffc8d8);
-    position: relative;
-}
-
-.strawberry-scroll__sticky {
-    min-height: min(78vh, 760px);
-    position: sticky;
-    top: 104px;
-    display: grid;
-    grid-template-columns: minmax(0, .9fr) minmax(300px, 1.1fr);
-    align-items: center;
-    gap: clamp(24px, 7vw, 100px);
-    width: min(1100px, calc(100% - 40px));
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.strawberry-scroll__copy span,
 .kids-campaign__eyebrow {
     color: var(--primary-dark);
     font-weight: 800;
@@ -225,18 +198,6 @@ header {
     text-transform: uppercase;
     font-size: .78rem;
 }
-
-.strawberry-scroll__copy h2 { font-family: var(--font-title); font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1.04; margin: 14px 0; color: var(--text-main); }
-.strawberry-scroll__copy p { font-size: clamp(1rem, 1.8vw, 1.25rem); color: #7c5355; }
-.dessert-story { width:min(44vw,430px); aspect-ratio:3/4; margin:0 auto; position:relative; overflow:hidden; border-radius:36px; background:#fff; box-shadow:0 28px 60px rgba(142,32,56,.22); }
-.dessert-story img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-.dessert-story__before { opacity:1; }
-.dessert-story__after { opacity:var(--story-progress-number); clip-path:inset(var(--story-reveal) 0 0 0); }
-.dessert-story__label { position:absolute; z-index:2; left:18px; bottom:18px; padding:9px 14px; border-radius:999px; background:rgba(255,255,255,.9); color:#6e293c; font-size:.76rem; font-weight:800; box-shadow:0 8px 24px rgba(71,20,34,.14); backdrop-filter:blur(8px); }
-.dessert-story__label--before { opacity:calc(1 - var(--story-progress-number)); }
-.dessert-story__label--after { opacity:var(--story-progress-number); }
-.strawberry-scroll__progress { position:absolute; bottom:24px; left:0; right:0; height:4px; background:rgba(255,77,128,.14); border-radius:10px; overflow:hidden; }
-.strawberry-scroll__progress span { display:block; width:var(--story-progress); height:100%; background:var(--primary-color); transition:width .08s linear; }
 
 /* --- CAMPAÑA DÍA DEL NIÑO --- */
 .kids-campaign { padding: clamp(70px, 9vw, 120px) 0; background: #fff; }
@@ -315,34 +276,24 @@ header {
     .hero-badge { margin-bottom:12px; padding:7px 14px; font-size:.68rem; letter-spacing:1.4px; }
     #hero h1 { font-size:clamp(2.75rem,13vw,3.8rem); margin-bottom:.7rem; }
     #hero p { margin-bottom:18px; font-size:.95rem; line-height:1.55; }
-    .strawberry-scroll { min-height:118vh; }
-    .strawberry-scroll__sticky { top:104px; min-height:calc(100svh - 104px); grid-template-columns:1fr; grid-template-rows:auto 1fr; gap:14px; padding:22px 0 40px; text-align:center; }
-    .strawberry-scroll__copy h2 { font-size:clamp(2rem,10vw,3.2rem); margin:8px 0; }
-    .strawberry-scroll__copy p { font-size:.92rem; }
-    .dessert-story { width:min(78vw,340px); max-height:54svh; }
     .kids-campaign__grid { grid-template-columns:1fr; }
     .kids-campaign__photo { min-height:520px; border-radius:28px; }
     .kids-campaign__actions .btn { width:100%; }
     #grid-cups {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        padding: 10px 20px 30px;
-        gap: 20px;
-        grid-template-columns: none;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        padding: 8px 0 24px;
     }
-    #grid-cups::-webkit-scrollbar { display: none; }
 
     #grid-cups .option-card {
-        min-width: 200px;
-        width: 200px;
-        scroll-snap-align: center;
-        flex-shrink: 0;
+        min-width: 0;
+        width: 100%;
+        border-radius: 16px;
     }
-    #grid-cups .option-img { height: 240px; }
+    #grid-cups .option-img { height: 150px; }
+    #grid-cups .option-details { padding: 10px 5px 12px; }
+    #grid-cups .option-name { font-size: .84rem; }
 
     #grid-creams,
     #grid-toppings { grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }

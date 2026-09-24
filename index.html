@@ -6,6 +6,8 @@
     
     <meta name="description" content="D'Eli Fresa: Postres personalizados, Crepés, Helados y Pancakes. ¡Arma tu vaso a tu gusto!">
     <meta name="theme-color" content="#ff4d80">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
     <link rel="canonical" href="https://delifresas.site/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_PE">
@@ -631,5 +633,14 @@
 
     <script src="/assets/catalog-data.js" defer></script>
     <script src="/assets/app.js" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {
+                    // La pagina y los pedidos siguen funcionando sin instalacion PWA.
+                });
+            });
+        }
+    </script>
 </body>
 </html>

@@ -579,3 +579,8 @@ footer { background: var(--text-main); color: white; padding: 40px 0 100px; text
     .info-grid { grid-template-columns: 1fr; }
     .about-image img { width: 100%; height: auto; }
 }
+.contact-whatsapp-fab { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: calc(96px + env(safe-area-inset-bottom)); z-index: 1999; display: grid; width: 50px; height: 50px; place-items: center; border: 2px solid #fff; border-radius: 50%; background: #168a59; color: #fff; box-shadow: 0 5px 18px rgba(0,0,0,.24); }
+.contact-whatsapp-fab svg { width: 28px; height: 28px; }
+.contact-whatsapp-fab:focus-visible { outline: 3px solid #173c2c; outline-offset: 2px; }
+@media (min-width: 769px) { .contact-whatsapp-fab { right: 24px; bottom: 94px; } }
+body:has(.cart-modal.open) .contact-whatsapp-fab { visibility: hidden; }
